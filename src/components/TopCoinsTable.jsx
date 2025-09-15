@@ -1,35 +1,56 @@
-const TopCoinsTable = () => {
-  const topCoins = [
-    { rank: 1, name: "Bitcoin", price: 31000, change: 2.5, marketCap: "600B" },
-    { rank: 2, name: "Ethereum", price: 2100, change: -1.2, marketCap: "250B" },
-    { rank: 3, name: "Dogecoin", price: 0.07, change: 4.1, marketCap: "9B" },
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+} from "recharts";
+
+const MarketCapChart = () => {
+  const data = [
+    { name: "BTC", marketCap: 850 },
+    { name: "ETH", marketCap: 400 },
+    { name: "BNB", marketCap: 90 },
+    { name: "SOL", marketCap: 80 },
+    { name: "XRP", marketCap: 70 },
   ];
+
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Coin</th>
-            <th>Price</th>
-            <th>24h Change</th>
-            <th>Market Cap</th>
-          </tr>
-        </thead>
-        <tbody>
-          {topCoins.map((coin, index) => (
-            <tr key={index}>
-              <td>{coin.rank}</td>
-              <td>{coin.name}</td>
-              <td>${coin.price}</td>
-              <td>{coin.change}%</td>
-              <td>{coin.marketCap}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="w-full h-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data}>
+          <defs>
+            <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#4facfe" />
+              <stop offset="100%" stopColor="#00f2fe" />
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="name" axisLine={false} tickLine={false} />
+          <YAxis
+            axisLine={false}
+            tickLine={false}
+            tickFormatter={(value) => `${value}B`}
+          />
+          <Tooltip
+            formatter={(value) => [`$${value}B`, "Market Cap"]}
+            contentStyle={{
+              backgroundColor: "#fff",
+              borderRadius: "8px",
+              border: "none",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+            }}
+          />
+          <Bar
+            dataKey="marketCap"
+            fill="url(#barGradient)"
+            barSize={40}
+            radius={[8, 8, 0, 0]}
+          />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 };
 
-export default TopCoinsTable;
+export default MarketCapChart;

@@ -7,9 +7,9 @@ import TopCoinsTable from "./components/TopCoinsTable";
 
 function App() {
   return (
-    <div className="flex bg-slate-200 h-screen">
+    <div className="flex bg-slate-200 h-[100dvh]">
       <Sidebar />
-      <main className="p-6 flex-1 min-w-0 flex flex-col gap-6 overflow-y-auto">
+      <main className="p-6 flex-1 min-w-0 flex flex-col gap-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StatCard
             name="Bitcoin"
@@ -39,14 +39,14 @@ function App() {
             <h2 className="text-lg font-semibold mb-4">
               Top Coins by Volume (Demo)
             </h2>
-            <VolumeChart/>
+            <VolumeChart />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-xl shadow-md transition hover:shadow-lg">
-          <h2 className="text-lg font-semibold mb-4">
-          Top coins table
-           </h2>
-          <TopCoinsTable/>
+        <div className="flex-1 bg-white p-6 rounded-xl shadow-md transition hover:shadow-lg overflow-hidden flex flex-col">
+          <h2 className="text-lg font-semibold mb-4">Top coins table</h2>
+          <div className="flex-1 min-h-0">
+            <TopCoinsTable />
+          </div>
         </div>
       </main>
     </div>
