@@ -1,10 +1,7 @@
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
+  PieChart,
+  Pie,
   Tooltip,
-  CartesianGrid,
   ResponsiveContainer,
   Cell,
   Legend,
@@ -20,23 +17,27 @@ function VolumeChart() {
   return (
     <div className="w-full h-[300px]">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data} barSize={60}>
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: "#fff",
-              borderRadius: "8px",
-              border: "none",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-            }}
-          />
-          <Bar dataKey="volume" radius={[8, 8, 0, 0]}>
-            <Cell fill="#facc15" /> {/* Bitcoin - yellow */}
-            <Cell fill="#3b82f6" /> {/* Ethereum - blue */}
-            <Cell fill="#f97316" /> {/* Dogecoin - orange */}
-          </Bar>
-        </BarChart>
+        <PieChart>
+          <Pie
+            data={data}
+            dataKey="volume"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            innerRadius={65} // makes it a donut instead of a pie
+            outerRadius={100}
+            paddingAngle={2} // spacing between slices
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={["#facc15", "#3b82f6", "#f97316"][index]}
+              />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );

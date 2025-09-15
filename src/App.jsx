@@ -30,12 +30,12 @@ function App() {
             changeType="positive"
           />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="flex flex-col justify-between items-center bg-white p-6 rounded-xl shadow-md transition hover:shadow-lg">
+        <div className="flex gap-6">
+          <div className="flex-[2] flex flex-col justify-between items-center bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg">
             <h2 className="text-lg font-semibold mb-4">Bitcoin Price (Demo)</h2>
             <PriceChart />
           </div>
-          <div className="flex flex-col justify-between items-center bg-white p-6 rounded-xl shadow-md transition hover:shadow-lg">
+          <div className="flex-[1] flex flex-col justify-between items-center bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg">
             <h2 className="text-lg font-semibold mb-4">
               Top Coins by Volume (Demo)
             </h2>
