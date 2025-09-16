@@ -35,8 +35,35 @@ function VolumeChart() {
               />
             ))}
           </Pie>
-          <Tooltip />
-          <Legend />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "#fff",
+              borderRadius: "8px",
+              border: "none",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+            }}
+          />
+          <Legend
+            content={({ payload }) => (
+              <div className="flex justify-center gap-6 mt-4">
+                {payload.map((entry, index) => (
+                  <div
+                    key={`item-${index}`}
+                    className="flex items-center gap-2"
+                  >
+                    {/* Circle indicator */}
+                    <span
+                      className="w-3 h-3 rounded-full"
+                      style={{ backgroundColor: entry.color }}
+                    ></span>
+                    <span className="text-sm font-medium text-gray-700">
+                      {entry.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>

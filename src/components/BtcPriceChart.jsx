@@ -17,7 +17,7 @@ const data = [
   { name: "Sun", price: 700 },
 ];
 
-function PriceChart() {
+function BtcPriceChart() {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={data}>
@@ -40,7 +40,7 @@ function PriceChart() {
             <stop offset="100%" stopColor="#82ca9d" stopOpacity={0.1} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="name" axisLine={false} tickLine={false} />
+        <XAxis dataKey="name" axisLine={false} tickLine={false} padding={{ left: 20, right: 20 }}  />
         <YAxis dataKey="price" axisLine={false} tickLine={false} />
         <Tooltip
           cursor={{ stroke: "transparent" }}
@@ -64,4 +64,4 @@ function PriceChart() {
   );
 }
 
-export default PriceChart;
+export default BtcPriceChart;

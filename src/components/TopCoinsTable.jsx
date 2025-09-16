@@ -34,6 +34,7 @@ const MarketCapChart = () => {
           />
           <Tooltip
             formatter={(value) => [`$${value}B`, "Market Cap"]}
+            cursor={{ fill: "transparent" }}
             contentStyle={{
               backgroundColor: "#fff",
               borderRadius: "8px",

@@ -1,9 +1,10 @@
 import "./App.css";
 import Sidebar from "./components/sidebar";
 import StatCard from "./components/StatCards";
-import PriceChart from "./components/pricechart";
+import BtcPriceChart from "./components/BtcPriceChart";
 import VolumeChart from "./components/VolumeChart";
 import TopCoinsTable from "./components/TopCoinsTable";
+import TopMovers from "./components/TopMovers";
 
 function App() {
   return (
@@ -31,15 +32,18 @@ function App() {
           />
         </div>
         <div className="flex gap-6">
-          <div className="flex-[2] flex flex-col justify-between items-center bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg">
+          <div className="flex-[1.5] flex flex-col justify-between items-center bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg">
             <h2 className="text-lg font-semibold mb-4">Bitcoin Price (Demo)</h2>
-            <PriceChart />
+            <BtcPriceChart />
           </div>
-          <div className="flex-[1] flex flex-col justify-between items-center bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg">
+          <div className="flex-[0.8] flex flex-col justify-between items-center bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg">
             <h2 className="text-lg font-semibold mb-4">
               Top Coins by Volume (Demo)
             </h2>
             <VolumeChart />
+          </div>
+          <div className="flex-[0.8]">
+           <TopMovers/>
           </div>
         </div>
         <div className="flex-1 bg-white p-6 rounded-xl shadow-md transition hover:shadow-lg overflow-hidden flex flex-col">
