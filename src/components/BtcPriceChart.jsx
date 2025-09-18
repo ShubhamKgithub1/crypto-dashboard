@@ -6,21 +6,23 @@ import {
   ResponsiveContainer,
   Line,
 } from "recharts";
-
-const data = [
-  { name: "Mon", price: 400 },
-  { name: "Tue", price: 300 },
-  { name: "Wed", price: 500 },
-  { name: "Thu", price: 200 },
-  { name: "Fri", price: 600 },
-  { name: "Sat", price: 800 },
-  { name: "Sun", price: 700 },
-];
+import { useSelector } from "react-redux";
+import { selectPriceHistory } from "../features/priceHistorySlice";
 
 function BtcPriceChart() {
+  const priceHistory = useSelector(selectPriceHistory);
+  const rawPrices = priceHistory.prices;
+  const chartData = rawPrices?.map(([timestamp, price]) => ({
+    date: new Date(timestamp).toLocaleDateString("en-US", { weekday: "short" }),
+    price: price,
+  }));
+  console.log(chartData);
+
+  if (!chartData) return;
+
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <LineChart data={data}>
+      <LineChart data={chartData}>
         <defs>
           <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
             <feDropShadow
@@ -40,10 +42,28 @@ function BtcPriceChart() {
             <stop offset="100%" stopColor="#82ca9d" stopOpacity={0.1} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="name" axisLine={false} tickLine={false} padding={{ left: 20, right: 20 }}  />
-        <YAxis dataKey="price" axisLine={false} tickLine={false} />
+        <XAxis
+          dataKey="date"
+          axisLine={false}
+          tickLine={false}
+          padding={{ left: 20, right: 20 }}
+        />
+        <YAxis
+          dataKey="price"
+          axisLine={false}
+          tickLine={false}
+          domain={["dataMin", "dataMax"]}
+          padding={{ bottom: 20 }}
+          tickFormatter={(value) =>
+            value >= 1000 ? `$${(value / 1000).toFixed(0)}k` : `$${value}`
+          }
+        />
         <Tooltip
           cursor={{ stroke: "transparent" }}
+          formatter={(value) =>
+             [value >= 1000 ?`$${(value / 1000).toFixed(0)}k` : `$${value}`, "price"]
+          }        
+            // formatter={(value) => [`$${(value / 1e9).toFixed(1)}B`, "Market Cap"]}
           contentStyle={{
             backgroundColor: "#fff",
             borderRadius: "8px",

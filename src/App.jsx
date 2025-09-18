@@ -1,29 +1,26 @@
 import "./App.css";
-import Sidebar from "./components/sidebar";
+import Sidebar from "./components/Sidebar";
 import StatCard from "./components/StatCards";
 import BtcPriceChart from "./components/BtcPriceChart";
 import VolumeChart from "./components/VolumeChart";
 import TopCoinsTable from "./components/TopCoinsTable";
 import TopMovers from "./components/TopMovers";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchMarketData,
-  selectMarketCoins,
-  selectMarketStatus,
-} from "./features/marketSlice";
+import { fetchMarketData, selectMarketCoins } from "./features/marketSlice";
+import { fetchTopCoinsData } from "./features/topCoinsSlice";
+import { fetchPriceHistoryData } from "./features/priceHistorySlice";
 import { useEffect } from "react";
-import { Coins } from "lucide-react";
 
 function App() {
   const dispatch = useDispatch();
   const coins = useSelector(selectMarketCoins);
-  const status = useSelector(selectMarketStatus);
 
-  console.log(coins, status);
   useEffect(() => {
-    // initial load
-    dispatch(fetchMarketData(/* optional params */));
+    dispatch(fetchMarketData());
+    dispatch(fetchTopCoinsData());
+    dispatch(fetchPriceHistoryData());
   }, [dispatch]);
+
   return (
     <div className="flex bg-slate-200 h-[100dvh]">
       <Sidebar />

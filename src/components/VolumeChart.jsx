@@ -6,21 +6,19 @@ import {
   Cell,
   Legend,
 } from "recharts";
-
-const data = [
-  { name: "Bitcoin", volume: 1200 },
-  { name: "Ethereum", volume: 900 },
-  { name: "Dogecoin", volume: 400 },
-];
+import { useSelector } from "react-redux";
+import { selectTopCoins } from "../features/topCoinsSlice";
 
 function VolumeChart() {
+  const data = useSelector(selectTopCoins);
+  const topCoins = data.slice(0, 4);
   return (
-    <div className="w-full h-[300px]">
+    <div className="w-full h-full">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
-            data={data}
-            dataKey="volume"
+            data={topCoins}
+            dataKey="total_volume"
             nameKey="name"
             cx="50%"
             cy="50%"
@@ -28,7 +26,7 @@ function VolumeChart() {
             outerRadius={100}
             paddingAngle={2} // spacing between slices
           >
-            {data.map((entry, index) => (
+            {topCoins.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={["#facc15", "#3b82f6", "#f97316"][index]}
@@ -36,6 +34,10 @@ function VolumeChart() {
             ))}
           </Pie>
           <Tooltip
+            formatter={(value) => [
+              `$${(value / 1e9).toFixed(1)}B`,
+              "Market Cap",
+            ]}
             contentStyle={{
               backgroundColor: "#fff",
               borderRadius: "8px",
