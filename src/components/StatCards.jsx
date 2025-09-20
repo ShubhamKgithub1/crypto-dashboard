@@ -7,7 +7,7 @@ const StatCard = ({ name, price, change, changeType }) => {
   const value = isNaN(percent) ? 0 : percent;
   const Icon = changeType === "positive" ? ArrowUpRight : ArrowDownRight;
   return (
-    <div className="bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg flex justify-between">
+    <div className="bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center">
       <div>
         <h2 className="text-gray-500 text-sm">{name}</h2>
         <p className="text-2xl font-bold">{price}</p>
@@ -26,7 +26,7 @@ const StatCard = ({ name, price, change, changeType }) => {
           </span>
         </div>
       </div>
-      <div className="w-16 h-16">
+      <div className="w-14 h-14">
         <CircularProgressbar
           value={Math.abs(value)}
           text={`${value}%`}

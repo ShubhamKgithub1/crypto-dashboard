@@ -12,6 +12,7 @@ import { selectTopCoins } from "../features/topCoinsSlice";
 function VolumeChart() {
   const data = useSelector(selectTopCoins);
   const topCoins = data.slice(0, 4);
+  if(!topCoins) return;
   return (
     <div className="w-full h-full">
       <ResponsiveContainer width="100%" height="100%">
@@ -25,11 +26,13 @@ function VolumeChart() {
             innerRadius={65} // makes it a donut instead of a pie
             outerRadius={100}
             paddingAngle={2} // spacing between slices
+             label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+              labelLine={false}
           >
             {topCoins.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={["#facc15", "#3b82f6", "#f97316"][index]}
+                fill={["#facc15", "#3b82f6", "#f97316", "#111"][index]}
               />
             ))}
           </Pie>

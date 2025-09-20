@@ -16,7 +16,6 @@ function BtcPriceChart() {
     date: new Date(timestamp).toLocaleDateString("en-US", { weekday: "short" }),
     price: price,
   }));
-  console.log(chartData);
 
   if (!chartData) return;
 

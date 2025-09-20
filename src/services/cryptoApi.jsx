@@ -24,3 +24,11 @@ export async function fetchPriceHistoryDataApi() {
   if (!res.ok) throw new Error("Failed to fetch top coins data");
   return res.json();
 };
+
+export async function fetchMoversDataApi() {
+  const res = await fetch(
+    `${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h`
+  );
+  if (!res.ok) throw new Error("Failed to fetch movers data");
+  return res.json();
+}
