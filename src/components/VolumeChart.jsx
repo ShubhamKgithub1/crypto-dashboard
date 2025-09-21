@@ -12,7 +12,6 @@ import { selectTopCoins } from "../features/topCoinsSlice";
 function VolumeChart() {
   const data = useSelector(selectTopCoins);
   const topCoins = data.slice(0, 4);
-  if(!topCoins) return;
   return (
     <div className="w-full h-full">
       <ResponsiveContainer width="100%" height="100%">
@@ -23,11 +22,13 @@ function VolumeChart() {
             nameKey="name"
             cx="50%"
             cy="50%"
-            innerRadius={65} // makes it a donut instead of a pie
+            innerRadius={65}
             outerRadius={100}
-            paddingAngle={2} // spacing between slices
-             label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-              labelLine={false}
+            paddingAngle={2}
+            label={({ name, percent }) =>
+              `${name} ${(percent * 100).toFixed(0)}%`
+            }
+            labelLine={false}
           >
             {topCoins.map((entry, index) => (
               <Cell
@@ -50,13 +51,12 @@ function VolumeChart() {
           />
           <Legend
             content={({ payload }) => (
-              <div className="flex justify-center gap-6 mt-4">
+              <div className="flex justify-between mt-4">
                 {payload.map((entry, index) => (
                   <div
                     key={`item-${index}`}
                     className="flex items-center gap-2"
                   >
-                    {/* Circle indicator */}
                     <span
                       className="w-3 h-3 rounded-full"
                       style={{ backgroundColor: entry.color }}

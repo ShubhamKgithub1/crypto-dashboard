@@ -19,15 +19,15 @@ function App() {
     dispatch(fetchPriceHistoryData());
     dispatch(fetchMoversData());
 
-     const interval = setInterval(() => {
-      dispatch(fetchMarketData());
-      dispatch(fetchTopCoinsData());
-      dispatch(fetchPriceHistoryData());
-      dispatch(fetchMoversData());
-      console.log("refreshed..");
-    }, 60000);
+    //  const interval = setInterval(() => {
+    //   // dispatch(fetchMarketData());
+    //   dispatch(fetchTopCoinsData());
+    //   dispatch(fetchPriceHistoryData());
+    //   dispatch(fetchMoversData());
+    //   console.log("refreshed..");
+    // }, 60000);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, [dispatch]);
 
   return (

@@ -17,7 +17,6 @@ function BtcPriceChart() {
     price: price,
   }));
 
-  if (!chartData) return;
 
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -76,7 +75,7 @@ function BtcPriceChart() {
           stroke="url(#lineGradient)"
           strokeWidth={3}
           filter="url(#shadow)"
-          dot={false} // remove dots, looks cleaner for price trend
+          dot={false}
         />
       </LineChart>
     </ResponsiveContainer>

@@ -11,7 +11,6 @@ import { selectTopCoins } from "../features/topCoinsSlice";
 
 const TopCoinsTable = () => {
   const topCoins = useSelector(selectTopCoins);
-  if (!topCoins) return;
   return (
     <div className="w-full h-full">
       <ResponsiveContainer width="100%" height="100%">

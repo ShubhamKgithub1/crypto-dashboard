@@ -6,8 +6,9 @@ const StatCard = ({ name, price, change, changeType }) => {
   const percent = parseFloat(change); // from "2.5%" → 2.5
   const value = isNaN(percent) ? 0 : percent;
   const Icon = changeType === "positive" ? ArrowUpRight : ArrowDownRight;
+
   return (
-    <div className="bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center">
+    <div className="bg-white px-4 py-2 rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center">
       <div>
         <h2 className="text-gray-500 text-sm">{name}</h2>
         <p className="text-2xl font-bold">{price}</p>

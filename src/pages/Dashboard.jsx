@@ -4,45 +4,71 @@ import VolumeChart from "../components/VolumeChart";
 import TopCoinsTable from "../components/TopCoinsTable";
 import TopMovers from "../components/TopMovers";
 import { useSelector } from "react-redux";
-import { selectMarketCoins } from "../features/marketSlice";
+import { selectMarketCoins, selectMarketStatus } from "../features/marketSlice";
+import { selectPriceHistoryStatus } from "../features/priceHistorySlice";
+import ChartSkeleton from "../components/ChartSkeleton";
+import { selectTopCoinsStatus } from "../features/topCoinsSlice";
+import CardSkeleton from "../components/CardSkeleton";
 
 const Dashboard = () => {
   const coins = useSelector(selectMarketCoins);
+  const marketStatus = useSelector(selectMarketStatus);
+  const btcStatus = useSelector(selectPriceHistoryStatus);
+  const topCoinsStatus = useSelector(selectTopCoinsStatus);
 
-  if (!coins) return;
   return (
-    <div className="flex flex-col flex-1 min-h-0 p-4 gap-4">
+    <div className="flex flex-col flex-1 min-h-0 p-4 pt-0 gap-4">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {coins.slice(0, 4).map((coin) => (
-          <StatCard
-            key={coin.id}
-            name={coin.name}
-            price={`$${coin.current_price.toLocaleString()}`}
-            change={`${coin.price_change_percentage_24h.toFixed(2)}%`}
-            changeType={
-              coin.price_change_percentage_24h >= 0 ? "positive" : "negative"
-            }
-          />
-        ))}
+        {marketStatus === "loading"
+    ? Array(4)
+        .fill(0)
+        .map((_, i) => <CardSkeleton key={i}/>)
+    : coins?.slice(0, 4)?.map((coin) => (
+        <StatCard
+          key={coin.id}
+          name={coin.name}
+          price={`$${coin.current_price.toLocaleString()}`}
+          change={`${coin.price_change_percentage_24h.toFixed(2)}%`}
+          changeType={
+            coin.price_change_percentage_24h >= 0 ? "positive" : "negative"
+          }
+        />
+      ))}
       </div>
-      <div className="grid grid-cols-4 gap-6">
-        <div className="col-span-2 flex flex-col justify-between items-center bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg">
-          <h2 className="text-lg font-semibold mb-4">Bitcoin Price</h2>
-          <BtcPriceChart />
+      <div className="grid grid-cols-4 gap-6 min-h-[250px]">
+        <div className="col-span-2 bg-white rounded-xl shadow-md transition hover:shadow-lg">
+          {btcStatus === "loading" ? (
+            <ChartSkeleton className={"h-full"} />
+          ) : (
+            <div className="flex flex-col h-full p-4">
+              <h2 className="text-lg font-semibold mb-4">Bitcoin Price</h2>
+              <BtcPriceChart />
+            </div>
+          )}
         </div>
-        <div className=" flex flex-col justify-between items-center bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg">
-          <h2 className="text-lg font-semibold mb-4">Top Coins by Volume</h2>
-          <VolumeChart />
+        <div className="  bg-white rounded-xl shadow-md transition hover:shadow-lg">
+          {topCoinsStatus === "loading" ? (
+            <ChartSkeleton className={"h-full"} />
+          ) : (
+            <div className="flex flex-col h-full p-4">
+              <h2 className="text-lg font-semibold mb-4">
+                Top Coins by Volume
+              </h2>
+              <VolumeChart />
+            </div>
+          )}
         </div>
         <div className="">
           <TopMovers />
         </div>
       </div>
-      <div className="flex-1 min-h-0 bg-white p-6 rounded-xl shadow-md transition hover:shadow-lg overflow-hidden flex flex-col">
-        <h2 className="text-lg font-semibold mb-4">Top coins</h2>
+      <div className="flex-1 min-h-0 bg-white rounded-xl shadow-md transition hover:shadow-lg overflow-hidden flex flex-col">
+        {topCoinsStatus === "loading"?( <ChartSkeleton className={"h-full"} />):(
+          <div className="flex flex-col flex-1 p-4"><h2 className="text-lg font-semibold mb-4">Top coins</h2>
         <div className="flex-1 min-h-0">
           <TopCoinsTable />
-        </div>
+        </div></div>
+        )}
       </div>
     </div>
   );

@@ -48,8 +48,8 @@ const priceHistorySlice = createSlice({
 export const {clearPriceHistoryData} = priceHistorySlice.actions;
 
 export const selectPriceHistory = (state) => state.priceHistory.history;
-export const selectPriceHistoryStatus = (state) => state.priceHistory.history;
-export const selectPriceHistoryError = (state) => state.priceHistory.history;
-export const selectPriceHistoryLastUpdated = (state) => state.priceHistory.history;
+export const selectPriceHistoryStatus = (state) => state.priceHistory.status;
+export const selectPriceHistoryError = (state) => state.priceHistory.error;
+export const selectPriceHistoryLastUpdated = (state) => state.priceHistory.lastUpdated;
 
 export default priceHistorySlice.reducer;

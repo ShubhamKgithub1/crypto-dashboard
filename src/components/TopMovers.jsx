@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
-import { selectMoversSliceData } from "../features/moversSlice";
+import { selectMoversSliceData, selectMoversSliceStatus } from "../features/moversSlice";
+import CardSkeleton from "./CardSkeleton";
 
 const TopMovers = () => {
   const coins = useSelector(selectMoversSliceData);
+  const status = useSelector(selectMoversSliceStatus);
 
   const gainers = [...coins]
     .sort(
@@ -16,13 +18,11 @@ const TopMovers = () => {
     )
     .slice(0, 3);
 
-  if (!coins) {
-    return;
-  }
 
   return (
     <div className="flex flex-col justify-between h-full w-full gap-6">
-      <div className="bg-white p-6 rounded-xl shadow-md">
+      {status === "loading"?(<CardSkeleton className={"h-[50%]"}/>):(
+        <div className="bg-white p-6 rounded-xl shadow-md">
         <h1 className="font-semibold mb-2">Top Gainers</h1>
         {gainers.map((coin, index) => (
           <div key={index} className="flex justify-between text-sm py-1">
@@ -36,7 +36,9 @@ const TopMovers = () => {
           </div>
         ))}
       </div>
-      <div className="bg-white p-6 rounded-xl shadow-md">
+      ) }
+      {status === "loading"?(<CardSkeleton className={"h-[50%]"}/>):(
+        <div className="bg-white p-6 rounded-xl shadow-md">
         <h1 className="font-semibold mb-2">Top Losers</h1>
         {losers.map((coin, index) => (
           <div key={index} className="flex justify-between text-sm py-1">
@@ -50,6 +52,8 @@ const TopMovers = () => {
           </div>
         ))}
       </div>
+      )}
+      
     </div>
   );
 };
