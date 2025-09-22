@@ -3,7 +3,7 @@ import { selectMarketLastUpdated } from "../features/marketSlice";
 import { useEffect, useState } from "react";
 import formatRelativeTime from "../utils/time";
 
-const Navbar = () => {
+const Navbar = ({title}) => {
   const lastUpdated = useSelector(selectMarketLastUpdated);
   const [relativeTime, setRelativeTime] = useState("");
   
@@ -20,8 +20,8 @@ const Navbar = () => {
   }, [lastUpdated]);
 
   return (
-    <div className="flex p-4 justify-between items-center">
-      <h1 className="text-2xl font-bold">Crypto Dashboard</h1>
+    <div className="flex justify-between items-center">
+      <h1 className="text-2xl font-bold">{title}</h1>
       <div className="">
         <span className="text-gray-400 font-semibold">Last Updated: </span>
         <span className="text-green-600 font-semibold">{relativeTime}</span>

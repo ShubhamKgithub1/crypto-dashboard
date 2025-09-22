@@ -9,6 +9,7 @@ import { selectPriceHistoryStatus } from "../features/priceHistorySlice";
 import ChartSkeleton from "../components/ChartSkeleton";
 import { selectTopCoinsStatus } from "../features/topCoinsSlice";
 import CardSkeleton from "../components/CardSkeleton";
+import Navbar from "../components/Navbar";
 
 const Dashboard = () => {
   const coins = useSelector(selectMarketCoins);
@@ -17,7 +18,8 @@ const Dashboard = () => {
   const topCoinsStatus = useSelector(selectTopCoinsStatus);
 
   return (
-    <div className="flex flex-col flex-1 min-h-0 p-4 pt-0 gap-4">
+    <div className="flex flex-col flex-1 min-h-0 p-4 gap-4">
+      <Navbar title={"Crypto Dashboard"}/>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {marketStatus === "loading"
     ? Array(4)

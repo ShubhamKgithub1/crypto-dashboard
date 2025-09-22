@@ -26,7 +26,8 @@ const TopMovers = () => {
         <h1 className="font-semibold mb-2">Top Gainers</h1>
         {gainers.map((coin, index) => (
           <div key={index} className="flex justify-between text-sm py-1">
-            <div className="flex gap-1">
+            <div className="flex items-center gap-2">
+              <span className="bg-green-500 w-2 h-2 rounded-full"></span>
               <span className="text-gray-600">{coin.name}</span>
               <span className="text-gray-400">({coin.symbol})</span>
             </div>
@@ -42,7 +43,8 @@ const TopMovers = () => {
         <h1 className="font-semibold mb-2">Top Losers</h1>
         {losers.map((coin, index) => (
           <div key={index} className="flex justify-between text-sm py-1">
-            <div className="flex gap-1">
+            <div className="flex items-center gap-2">
+              <span className="bg-red-500 w-2 h-2 rounded-full"></span>
               <span className="text-gray-600">{coin.name}</span>
               <span className="text-gray-400">({coin.symbol})</span>
             </div>
