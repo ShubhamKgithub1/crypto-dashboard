@@ -1,4 +1,4 @@
-import StatCard from "../components/StatCards";
+import StatCard from "../components/StatCard";
 import BtcPriceChart from "../components/BtcPriceChart";
 import VolumeChart from "../components/VolumeChart";
 import TopCoinsTable from "../components/TopCoinsTable";

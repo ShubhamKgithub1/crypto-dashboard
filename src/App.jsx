@@ -2,7 +2,7 @@ import "./App.css";
 import Sidebar from "./components/Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { fetchMarketData } from "./features/marketSlice";
+import { fetchGlobalData, fetchMarketData } from "./features/marketSlice";
 import { fetchTopCoinsData } from "./features/topCoinsSlice";
 import { fetchPriceHistoryData } from "./features/priceHistorySlice";
 import { fetchMoversData } from "./features/moversSlice";
@@ -18,6 +18,7 @@ function App() {
     dispatch(fetchTopCoinsData());
     dispatch(fetchPriceHistoryData());
     dispatch(fetchMoversData());
+    dispatch(fetchGlobalData());
 
     //  const interval = setInterval(() => {
     //   // dispatch(fetchMarketData());
