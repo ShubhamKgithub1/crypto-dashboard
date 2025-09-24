@@ -20,8 +20,8 @@ const TopMovers = () => {
 
 
   return (
-    <div className="flex flex-col justify-between h-full w-full gap-6">
-      {status === "loading"?(<CardSkeleton className={"h-[50%]"}/>):(
+    <div className="flex flex-col justify-between h-full w-full gap-4">
+      {status === "loading" || status === "failed" ?(<CardSkeleton className={"h-[45%]"}/>):(
         <div className="bg-white p-6 rounded-xl shadow-md">
         <h1 className="font-semibold mb-2">Top Gainers</h1>
         {gainers.map((coin, index) => (
@@ -38,7 +38,7 @@ const TopMovers = () => {
         ))}
       </div>
       ) }
-      {status === "loading"?(<CardSkeleton className={"h-[50%]"}/>):(
+      {status === "loading" || status === "failed"?(<CardSkeleton className={"h-[45%]"}/>):(
         <div className="bg-white p-6 rounded-xl shadow-md">
         <h1 className="font-semibold mb-2">Top Losers</h1>
         {losers.map((coin, index) => (

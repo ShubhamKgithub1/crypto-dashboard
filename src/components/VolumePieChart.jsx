@@ -9,7 +9,7 @@ import {
 import { useSelector } from "react-redux";
 import { selectTopCoins } from "../features/topCoinsSlice";
 
-function VolumeChart() {
+function VolumePieChart() {
   const data = useSelector(selectTopCoins);
   const topCoins = data.slice(0, 4);
   return (
@@ -75,4 +75,4 @@ function VolumeChart() {
   );
 }
 
-export default VolumeChart;
+export default VolumePieChart;

@@ -1,6 +1,6 @@
 import StatCard from "../components/StatCard";
 import BtcPriceChart from "../components/BtcPriceChart";
-import VolumeChart from "../components/VolumeChart";
+import VolumePieChart from "../components/VolumePieChart";
 import TopCoinsTable from "../components/TopCoinsTable";
 import TopMovers from "../components/TopMovers";
 import { useSelector } from "react-redux";
@@ -20,8 +20,8 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col flex-1 min-h-0 p-4 gap-4">
       <Navbar title={"Crypto Dashboard"}/>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {marketStatus === "loading"
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {marketStatus === "loading" || marketStatus === "failed"
     ? Array(4)
         .fill(0)
         .map((_, i) => <CardSkeleton key={i}/>)
@@ -37,9 +37,9 @@ const Dashboard = () => {
         />
       ))}
       </div>
-      <div className="grid grid-cols-4 gap-6 min-h-[250px]">
+      <div className="grid grid-cols-4 gap-4 min-h-[250px]">
         <div className="col-span-2 bg-white rounded-xl shadow-md transition hover:shadow-lg">
-          {btcStatus === "loading" ? (
+          {btcStatus === "loading" || btcStatus === "failed" ? (
             <ChartSkeleton className={"h-full"} />
           ) : (
             <div className="flex flex-col h-full p-4">
@@ -49,14 +49,14 @@ const Dashboard = () => {
           )}
         </div>
         <div className="  bg-white rounded-xl shadow-md transition hover:shadow-lg">
-          {topCoinsStatus === "loading" ? (
+          {topCoinsStatus === "loading" || topCoinsStatus === "failed" ? (
             <ChartSkeleton className={"h-full"} />
           ) : (
             <div className="flex flex-col h-full p-4">
               <h2 className="text-lg font-semibold mb-4">
                 Top Coins by Volume
               </h2>
-              <VolumeChart />
+              <VolumePieChart />
             </div>
           )}
         </div>
@@ -64,8 +64,8 @@ const Dashboard = () => {
           <TopMovers />
         </div>
       </div>
-      <div className="flex-1 min-h-0 bg-white rounded-xl shadow-md transition hover:shadow-lg overflow-hidden flex flex-col">
-        {topCoinsStatus === "loading"?( <ChartSkeleton className={"h-full"} />):(
+      <div className="flex-1 min-h-0 w-[75%] bg-white rounded-xl shadow-md transition hover:shadow-lg overflow-hidden flex flex-col">
+        {topCoinsStatus === "loading" || topCoinsStatus === "failed"?( <ChartSkeleton className={"h-full"} />):(
           <div className="flex flex-col flex-1 p-4"><h2 className="text-lg font-semibold mb-4">Top coins</h2>
         <div className="flex-1 min-h-0">
           <TopCoinsTable />

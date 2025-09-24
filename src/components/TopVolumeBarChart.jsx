@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import {
   ResponsiveContainer,
   BarChart,
@@ -7,28 +6,31 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-import { selectTopCoins } from "../features/topCoinsSlice";
 
-const TopCoinsTable = () => {
-  const topCoins = useSelector(selectTopCoins);
+const TopVolumeBarChart = () => {
+  const mockTopVolumeData = [
+    { name: "Bitcoin", volume: 23.5 },
+    { name: "Ethereum", volume: 18.2 },
+    { name: "Tether", volume: 12.1 },
+    { name: "Solana", volume: 9.8 },
+    { name: "XRP", volume: 6.4 },
+    { name: "BNB", volume: 5.7 },
+    { name: "Dogecoin", volume: 4.2 },
+    { name: "Toncoin", volume: 3.8 },
+    { name: "Cardano", volume: 3.2 },
+    { name: "TRON", volume: 2.9 },
+  ];
   return (
-    <div className="w-full h-full">
+    <div className="flex-1 min-h-0">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={topCoins}>
+        <BarChart data={mockTopVolumeData}>
           <defs>
             <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#6d28d9" />
               <stop offset="100%" stopColor="#00f2fe" />
             </linearGradient>
           </defs>
-          <XAxis dataKey="name" axisLine={false} tickLine={false}/>
-          <YAxis
-            axisLine={false}
-            tickLine={false}
-            tickFormatter={(value) => `$${(value / 1e9).toFixed(1)}B`} // billions
-          />
           <Tooltip
-            formatter={(value) => [`$${(value / 1e9).toFixed(1)}B`, "Market Cap"]}
             cursor={{ fill: "transparent" }}
             contentStyle={{
               backgroundColor: "#fff",
@@ -37,11 +39,13 @@ const TopCoinsTable = () => {
               boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
             }}
           />
+          <XAxis dataKey="name" axisLine={false} tickLine={false} />
+          <YAxis axisLine={false} tickLine={false} />
           <Bar
-            dataKey="market_cap"
+            dataKey="volume"
             fill="url(#barGradient)"
             barSize={40}
-            radius={[8, 8, 0, 0]}
+            radius={[4, 4, 0, 0]}
           />
         </BarChart>
       </ResponsiveContainer>
@@ -49,4 +53,4 @@ const TopCoinsTable = () => {
   );
 };
 
-export default TopCoinsTable;
+export default TopVolumeBarChart;
