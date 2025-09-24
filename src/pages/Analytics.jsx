@@ -4,6 +4,7 @@ import { selectGlobalStats } from "../features/marketSlice";
 import  StatCard  from "../components/StatCard";
 import { formatNumber } from "../utils/formatNumber";
 import TopVolumeBarChart from "../components/TopVolumeBarChart";
+import MarketCapTrendChart from "../components/MarketCapTrendChart";
 
 const Analytics = () => {
 const globalStats = useSelector(selectGlobalStats);
@@ -39,7 +40,7 @@ const kpiCards = [
         {/* Right Column */}
         <div className="bg-white p-4 rounded-xl shadow-md flex flex-col">
           <h2 className="text-lg font-semibold mb-4">Volatility Index</h2>
-          <div className="flex-1">[Chart here]</div>
+          <MarketCapTrendChart/>
         </div>
       </div>
 

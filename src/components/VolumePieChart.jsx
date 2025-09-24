@@ -13,7 +13,7 @@ function VolumePieChart() {
   const data = useSelector(selectTopCoins);
   const topCoins = data.slice(0, 4);
   return (
-    <div className="w-full h-full">
+    <div className="flex-1">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
@@ -22,8 +22,8 @@ function VolumePieChart() {
             nameKey="name"
             cx="50%"
             cy="50%"
-            innerRadius={65}
-            outerRadius={100}
+            innerRadius="50%" // was 65
+            outerRadius="80%" // was 100
             paddingAngle={2}
             label={({ name, percent }) =>
               `${name} ${(percent * 100).toFixed(0)}%`

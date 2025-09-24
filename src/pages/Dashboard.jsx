@@ -37,7 +37,7 @@ const Dashboard = () => {
         />
       ))}
       </div>
-      <div className="grid grid-cols-4 gap-4 min-h-[250px]">
+      <div className="grid grid-cols-4 gap-4 min-h-[300px]">
         <div className="col-span-2 bg-white rounded-xl shadow-md transition hover:shadow-lg">
           {btcStatus === "loading" || btcStatus === "failed" ? (
             <ChartSkeleton className={"h-full"} />
