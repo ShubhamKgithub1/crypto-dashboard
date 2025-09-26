@@ -9,7 +9,7 @@ import {
 } from "recharts";
 import { selectTopCoins } from "../features/topCoinsSlice";
 
-const TopCoinsTable = () => {
+const TopCoinsChart = () => {
   const topCoins = useSelector(selectTopCoins);
   return (
     <div className="w-full h-full">
@@ -49,4 +49,4 @@ const TopCoinsTable = () => {
   );
 };
 
-export default TopCoinsTable;
+export default TopCoinsChart;

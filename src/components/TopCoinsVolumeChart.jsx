@@ -7,7 +7,7 @@ import {
   Tooltip,
 } from "recharts";
 
-const TopVolumeBarChart = () => {
+const TopCoinsVolumeChart = () => {
   const mockTopVolumeData = [
     { name: "Bitcoin", volume: 23.5 },
     { name: "Ethereum", volume: 18.2 },
@@ -53,4 +53,4 @@ const TopVolumeBarChart = () => {
   );
 };
 
-export default TopVolumeBarChart;
+export default TopCoinsVolumeChart;

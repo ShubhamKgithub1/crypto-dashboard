@@ -1,7 +1,7 @@
 import StatCard from "../components/StatCard";
 import BtcPriceChart from "../components/BtcPriceChart";
 import VolumePieChart from "../components/VolumePieChart";
-import TopCoinsTable from "../components/TopCoinsTable";
+import TopCoinsChart from "../components/TopCoinsChart";
 import TopMovers from "../components/TopMovers";
 import { useSelector } from "react-redux";
 import { selectMarketCoins, selectMarketStatus } from "../features/marketSlice";
@@ -37,14 +37,14 @@ const Dashboard = () => {
         />
       ))}
       </div>
-      <div className="grid grid-cols-4 gap-4 min-h-[300px]">
+      <div className="grid grid-cols-4 gap-4 min-h-[300px]z">
         <div className="col-span-2 bg-white rounded-xl shadow-md transition hover:shadow-lg">
           {btcStatus === "loading" || btcStatus === "failed" ? (
             <ChartSkeleton className={"h-full"} />
           ) : (
             <div className="flex flex-col h-full p-4">
               <h2 className="text-lg font-semibold mb-4">Bitcoin Price</h2>
-              <BtcPriceChart />
+              <BtcPriceChart/>
             </div>
           )}
         </div>
@@ -68,8 +68,9 @@ const Dashboard = () => {
         {topCoinsStatus === "loading" || topCoinsStatus === "failed"?( <ChartSkeleton className={"h-full"} />):(
           <div className="flex flex-col flex-1 p-4"><h2 className="text-lg font-semibold mb-4">Top coins</h2>
         <div className="flex-1 min-h-0">
-          <TopCoinsTable />
-        </div></div>
+          <TopCoinsChart/>
+        </div>
+        </div>
         )}
       </div>
     </div>
