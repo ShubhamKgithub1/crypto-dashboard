@@ -1,21 +1,42 @@
-import { Area, AreaChart, ResponsiveContainer } from "recharts";
+import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
-const SparklineCard = ({ title, value, data, color }) => {
-    console.log(data);
+const SparklineCard = ({ title, history, color }) => {
+  // history = coinsHistory[coinId] (from Redux)
+
+  // Convert raw [timestamp, price] into objects for Recharts
+  const data =
+    history?.prices?.map(([timestamp, price]) => ({
+      time: timestamp,
+      price,
+    })) || [];
+
+  // Latest price (last element)
+  const latestPrice = data.length > 0 ? data[data.length - 1].price : null;
+
   return (
-    <div className="flex-1 flex justify-between items-center p-4 rounded-2xl shadow-lg bg-white ">
-       <div className="flex flex-col">
-        <h1 className="text-sm font-medium text-gray-600 dark:text-gray-300">{title}</h1>
-        <p className="text-lg font-bold">{value}</p>
+    <div className="flex-1 flex justify-between items-center p-4 rounded-2xl shadow-lg bg-white">
+      <div className="flex flex-col">
+        <h1 className="text-sm font-medium text-gray-600">{title}</h1>
+        {latestPrice && (
+          <p className="text-lg font-bold text-gray-900">
+            ${latestPrice.toLocaleString()}
+          </p>
+        )}
       </div>
       <div className="h-full w-[60%]">
         <ResponsiveContainer height="100%" width="100%">
           <AreaChart data={data}>
-            <Area dataKey="price" stroke={color}
+            <YAxis hide domain={["dataMin", "dataMax"]} />
+            <XAxis hide />
+            <Area
+              type="monotone"
+              dataKey="price"
+              stroke={color}
               fill={color}
               fillOpacity={0.2}
-              strokeWidth={2}
-              dot={false}></Area>
+              strokeWidth={3}
+              dot={false}
+            />
           </AreaChart>
         </ResponsiveContainer>
       </div>

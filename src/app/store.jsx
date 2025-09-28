@@ -1,14 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import marketReducer from "../features/marketSlice";
-import topCoinsReducer from "../features/topCoinsSlice";
-import priceHistoryReducer from "../features/priceHistorySlice";
-import moversReducer from "../features/moversSlice";
+import historyReducer from "../features/historySlice";
+import marketsSnapshotReducer from "../features/marketsSnapshotSlice";
 
 export const store = configureStore({
   reducer: {
+    marketsSnapshot: marketsSnapshotReducer,
     market: marketReducer,
-    priceHistory : priceHistoryReducer,
-    topCoins: topCoinsReducer,
-    movers: moversReducer,
+    history : historyReducer,
   },
 });

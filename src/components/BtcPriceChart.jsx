@@ -7,10 +7,11 @@ import {
   Line,
 } from "recharts";
 import { useSelector } from "react-redux";
-import { selectPriceHistory } from "../features/priceHistorySlice";
+import { selectCoinsHistory } from "../features/historySlice";
 
 function BtcPriceChart() {
-  const priceHistory = useSelector(selectPriceHistory);
+  const data = useSelector(selectCoinsHistory);
+  const priceHistory = data?.bitcoin;
   const rawPrices = priceHistory.prices;
   const chartData = rawPrices?.map(([timestamp, price]) => ({
     date: new Date(timestamp).toLocaleDateString("en-US", { weekday: "short" }),

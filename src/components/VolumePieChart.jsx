@@ -6,11 +6,8 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { useSelector } from "react-redux";
-import { selectTopCoins } from "../features/topCoinsSlice";
 
-function VolumePieChart() {
-  const data = useSelector(selectTopCoins);
+function VolumePieChart({data}) {
   const topCoins = data.slice(0, 4);
   return (
     <div className="flex-1">

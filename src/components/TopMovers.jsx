@@ -1,22 +1,11 @@
 import { useSelector } from "react-redux";
-import { selectMoversSliceData, selectMoversSliceStatus } from "../features/moversSlice";
 import CardSkeleton from "./CardSkeleton";
+import { selectTopGainers, selectTopLosers } from "../features/snapshotSelectors";
 
-const TopMovers = () => {
-  const coins = useSelector(selectMoversSliceData);
-  const status = useSelector(selectMoversSliceStatus);
+const TopMovers = ({status}) => {
+  const gainers = useSelector(selectTopGainers);
+  const losers = useSelector(selectTopLosers);
 
-  const gainers = [...coins]
-    .sort(
-      (a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h
-    )
-    .slice(0, 3);
-
-  const losers = [...coins]
-    .sort(
-      (a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h
-    )
-    .slice(0, 3);
 
 
   return (

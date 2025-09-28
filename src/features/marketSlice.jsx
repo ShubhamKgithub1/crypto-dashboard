@@ -1,13 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchMarketDataApi } from "../services/cryptoApi";
 import { fetchGlobalDataApi } from "../services/cryptoApi";
 
-export const fetchMarketData = createAsyncThunk(
-  "market/fetchMarketData",
-  async () => {
-    return await fetchMarketDataApi();
-  }
-);
 export const fetchGlobalData = createAsyncThunk(
   "market/fetchGlobalData",
   async () => {
@@ -16,8 +9,6 @@ export const fetchGlobalData = createAsyncThunk(
 );
 
 const initialState = {
-  coins: [],
-  status: "idle",
   globalStats: {},
   globalStatus: "idle",
   error: null,
@@ -36,19 +27,6 @@ const marketSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchMarketData.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
-      .addCase(fetchMarketData.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.coins = action.payload;
-        state.lastUpdated = Date.now();
-      })
-      .addCase(fetchMarketData.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error?.message || "Failed to fetch market data";
-      })
       .addCase(fetchGlobalData.pending, (state) => {
         state.globalStatus = "loading";
         state.error = null;
@@ -78,9 +56,6 @@ const marketSlice = createSlice({
 
 export const { clearMarketData } = marketSlice.actions;
 
-// Selectors
-export const selectMarketCoins = (state) => state.market.coins;
-export const selectMarketStatus = (state) => state.market.status;
 export const selectMarketError = (state) => state.market.error;
 export const selectMarketLastUpdated = (state) => state.market.lastUpdated;
 export const selectGlobalStats = (state) => state.market.globalStats;

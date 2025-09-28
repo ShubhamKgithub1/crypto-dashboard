@@ -7,22 +7,21 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { selectMarketCapHistory } from "../features/historySlice";
+import { useSelector } from "react-redux";
 
 const MarketCapTrendChart = () => {
-  const mockMarketCapTrend = [
-    { date: "Day 1", marketCap: 3850 },
-    { date: "Day 2", marketCap: 3900 },
-    { date: "Day 3", marketCap: 3925 },
-    { date: "Day 4", marketCap: 3880 },
-    { date: "Day 5", marketCap: 3950 },
-    { date: "Day 6", marketCap: 4000 },
-    { date: "Day 7", marketCap: 4050 },
-  ];
+    const data = useSelector(selectMarketCapHistory);
+  const chartData = data?.map(([timestamp, cap]) => ({
+    date: new Date(timestamp).toLocaleDateString("en-US", { weekday: "short" }),
+    marketCap: cap,
+  }));
+
   return (
 <div className="flex-1">
   <ResponsiveContainer width="100%" height="100%">
   <AreaChart
-    data={mockMarketCapTrend}
+    data={chartData}
     margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
   >
     <defs>
@@ -59,6 +58,7 @@ const MarketCapTrendChart = () => {
       axisLine={false}
       domain={["dataMin", "dataMax"]}
       padding={{ bottom: 20 }}
+       tickFormatter={(value) => `$${(value / 1e9).toFixed(1)}B`}
     />
     <Tooltip
       cursor={{ stroke: "transparent" }}

@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import {
   ResponsiveContainer,
   BarChart,
@@ -7,14 +6,12 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-import { selectTopCoins } from "../features/topCoinsSlice";
 
-const TopCoinsChart = () => {
-  const topCoins = useSelector(selectTopCoins);
+const TopCoinsChart = ({data, dataKey = "market_cap", title ="Market Cap", formatter}) => {
   return (
     <div className="w-full h-full">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={topCoins}>
+        <BarChart data={data}>
           <defs>
             <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#6d28d9" />
@@ -25,10 +22,10 @@ const TopCoinsChart = () => {
           <YAxis
             axisLine={false}
             tickLine={false}
-            tickFormatter={(value) => `$${(value / 1e9).toFixed(1)}B`} // billions
+            tickFormatter={formatter} // billions
           />
           <Tooltip
-            formatter={(value) => [`$${(value / 1e9).toFixed(1)}B`, "Market Cap"]}
+            formatter={(value)=>[formatter(value),title]}
             cursor={{ fill: "transparent" }}
             contentStyle={{
               backgroundColor: "#fff",
@@ -38,7 +35,7 @@ const TopCoinsChart = () => {
             }}
           />
           <Bar
-            dataKey="market_cap"
+            dataKey={dataKey}
             fill="url(#barGradient)"
             barSize={40}
             radius={[8, 8, 0, 0]}
