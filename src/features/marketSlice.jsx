@@ -60,5 +60,16 @@ export const selectMarketError = (state) => state.market.error;
 export const selectMarketLastUpdated = (state) => state.market.lastUpdated;
 export const selectGlobalStats = (state) => state.market.globalStats;
 export const selectGlobalStatus = (state) => state.market.globalStatus;
+export const selectDominanceData = (state) => {
+  const { btcDominance, ethDominance } = state.market.globalStats || {};
+  return [
+    { name: "BTC", value: btcDominance },
+    { name: "ETH", value: ethDominance },
+    {
+      name: "Others",
+      value: 100 - (btcDominance + ethDominance),
+    },
+  ];
+};
 
 export default marketSlice.reducer;

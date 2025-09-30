@@ -22,7 +22,7 @@ const Sidebar = () => {
       <button onClick={() => setIsCollapsed(!isCollapsed)} className="m-4">
         {isCollapsed ? <ArrowRight size={26} /> : <ArrowLeft size={26} />}
       </button>
-      <nav className="flex flex-col gap-4 mt-4 w-full">
+      <nav className="flex flex-col gap-6 mt-4 w-full">
         <Link
           to="/"
           className="flex flex-col items-center text-white hover:text-blue-500"

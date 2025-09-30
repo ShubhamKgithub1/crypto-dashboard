@@ -18,9 +18,9 @@ const Dashboard = () => {
   const topCoinsOverall = useSelector(selectTopCoinsOverall);
 
   return (
-    <div className="flex flex-col flex-1 min-h-0 p-4 gap-4">
+    <div className="flex flex-col flex-1 min-h-0 p-4 gap-6">
       <Navbar title={"Crypto Dashboard"} />
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {marketStatus === "loading" || marketStatus === "failed"
           ? Array(4)
               .fill(0)
@@ -41,7 +41,7 @@ const Dashboard = () => {
                 />
               ))}
       </div>
-      <div className="grid grid-cols-4 gap-4 min-h-[300px]">
+      <div className="grid grid-cols-4 gap-6 min-h-[300px]">
         <div className="col-span-2 bg-white rounded-xl shadow-md transition hover:shadow-lg">
           {btcStatus === "loading" ||
           btcStatus === "idle" ||
@@ -70,7 +70,7 @@ const Dashboard = () => {
           <TopMovers status={marketStatus}/>
         </div>
       </div>
-      <div className="flex-1 min-h-0 w-[75%] bg-white rounded-xl shadow-md transition hover:shadow-lg overflow-hidden flex flex-col">
+      <div className="flex-1 min-h-0 w-[75%] bg-white rounded-xl shadow-md transition hover:shadow-lg flex flex-col">
         {marketStatus === "loading" || marketStatus === "failed" ? (
           <ChartSkeleton className={"h-full"} />
         ) : (

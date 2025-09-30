@@ -32,13 +32,6 @@ export async function fetchTopCoinsDailyApi() {
   return res.json();
 }
 
-// export async function fetchTopCoins24hApi() {
-//   const res = await fetch(
-//     `${BASE_URL}/coins/markets?vs_currency=usd&order=volume_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`
-//   );
-//   if (!res.ok) throw new Error("Failed to fetch top coins in 24h");
-//   return res.json();
-// };
 
 export async function fetchPriceHistoryDataApi() {
   const coinIds = ["bitcoin", "ethereum", "solana"];
@@ -64,7 +57,6 @@ export async function fetchPriceHistoryDataApi() {
   });
 
   // ---- Build global marketCapHistory ----
-  // assume all coins have same length & aligned timestamps
   const marketCapHistory = results[0].market_caps.map((point, idx) => {
     const timestamp = point[0];
     const totalCap = results.reduce(
@@ -74,8 +66,31 @@ export async function fetchPriceHistoryDataApi() {
     return [timestamp, totalCap];
   });
 
-  return { coinsHistory, marketCapHistory };
+  // ---- Build dominanceHistory ----
+  const dominanceHistory = results[0].market_caps.map((point, idx) => {
+    const timestamp = point[0];
+    const totalCap = marketCapHistory[idx][1];
+
+    const dominanceData = { timestamp };
+    results.forEach((coin) => {
+      dominanceData[coin.id] =
+        +((coin.market_caps[idx][1] / totalCap) * 100).toFixed(2);
+    });
+
+    return dominanceData;
+  });
+    // ---- Remove duplicate last day ----
+  marketCapHistory.pop();
+  dominanceHistory.pop();
+  Object.keys(coinsHistory).forEach((id) => {
+    coinsHistory[id].prices.pop();
+    coinsHistory[id].market_caps.pop();
+    coinsHistory[id].total_volumes.pop();
+  });
+
+  return { coinsHistory, marketCapHistory, dominanceHistory };
 }
+
 
 export async function fetchMoversDataApi() {
   const res = await fetch(

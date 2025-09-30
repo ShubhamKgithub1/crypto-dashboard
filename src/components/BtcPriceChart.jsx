@@ -60,9 +60,8 @@ function BtcPriceChart() {
         <Tooltip
           cursor={{ stroke: "transparent" }}
           formatter={(value) =>
-             [value >= 1000 ?`$${(value / 1000).toFixed(0)}k` : `$${value}`, "price"]
-          }        
-            // formatter={(value) => [`$${(value / 1e9).toFixed(1)}B`, "Market Cap"]}
+             [value >= 1000 ?`$${(value / 1000).toFixed(0)}k` : `$${value}`, "Price"]
+          }
           contentStyle={{
             backgroundColor: "#fff",
             borderRadius: "8px",

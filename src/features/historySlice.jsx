@@ -11,6 +11,7 @@ export const fetchPriceHistoryData = createAsyncThunk(
 const initialState = {
   coinsHistory: {},
   marketCapHistory: [],
+  dominanceHistory: [],
   status: "idle",
   lastUpdated: null,
   error: null,
@@ -39,6 +40,7 @@ const historySlice = createSlice({
         state.status = "succeeded";
         state.coinsHistory = action.payload.coinsHistory;
         state.marketCapHistory = action.payload.marketCapHistory;
+        state.dominanceHistory = action.payload.dominanceHistory;
         state.lastUpdated = Date.now();
       })
       .addCase(fetchPriceHistoryData.rejected, (state, action) => {
@@ -52,6 +54,7 @@ export const { clearHistoryData } = historySlice.actions;
 
 export const selectCoinsHistory = (state) => state.history.coinsHistory;
 export const selectMarketCapHistory = (state) => state.history.marketCapHistory;
+export const selectDominanceHistory = (state) => state.history.dominanceHistory;
 export const selectCoinsHistoryStatus = (state) => state.history.status;
 export const selectCoinsHistoryError = (state) => state.history.error;
 export const selectCoinsHistoryLastUpdated = (state) =>

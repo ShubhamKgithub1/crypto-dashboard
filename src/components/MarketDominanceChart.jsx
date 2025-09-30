@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import {
   AreaChart,
   Area,
@@ -6,23 +7,19 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
+import { selectDominanceHistory } from "../features/historySlice";
 
 const MarketDominanceChart = () => {
-  const mockMarketDominance = [
-    { date: "Day 1", btc: 48, eth: 18, others: 34 },
-    { date: "Day 2", btc: 49, eth: 17, others: 34 },
-    { date: "Day 3", btc: 47, eth: 19, others: 34 },
-    { date: "Day 4", btc: 50, eth: 18, others: 32 },
-    { date: "Day 5", btc: 51, eth: 17, others: 32 },
-    { date: "Day 6", btc: 49, eth: 18, others: 33 },
-    { date: "Day 7", btc: 48, eth: 19, others: 33 },
-  ];
-
+  const dominanceData = useSelector(selectDominanceHistory);
+  console.log(dominanceData);
+  if (!dominanceData) {
+    return null;
+  }
   return (
     <div className="flex-1 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
-          data={mockMarketDominance}
+          data={dominanceData}
           margin={{ top: 20, right: 20, left: -10, bottom: 0 }}
         >
           <defs>
@@ -39,31 +36,50 @@ const MarketDominanceChart = () => {
               <stop offset="95%" stopColor="#6d28d9" stopOpacity={0.1} />
             </linearGradient>
           </defs>
-          <XAxis dataKey="date" tickLine={false} axisLine={false} />
-          <YAxis domain={[0, 100]} tickLine={false} axisLine={false} />
+          <XAxis
+            dataKey="timestamp"
+            tickLine={false}
+            axisLine={false}
+            tickFormatter={(ts) =>
+              new Date(ts).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+              })
+            }
+          />
+          <YAxis tickFormatter={(val) => `${val}%`} tickLine={false} axisLine={false} padding={{bottom:20, top:0, left:0, right:0}}/>
           <Area
             type="monotone"
-            dataKey="btc"
+            dataKey="bitcoin"
             stroke="#00f2fe"
             fill="url(#colorBTC)"
             stackId="1"
           />
           <Area
             type="monotone"
-            dataKey="eth"
+            dataKey="ethereum"
             stroke="#38bdf8"
             fill="url(#colorETH)"
             stackId="1"
           />
           <Area
             type="monotone"
-            dataKey="others"
+            dataKey="solana"
             stroke="#6d28d9"
             fill="url(#colorOthers)"
             stackId="1"
           />
           <Tooltip
-            formatter={(value, name) => [`${value}%`, name.toUpperCase()]}
+            formatter={(value, name) => [`${value}%`, name]}
+            labelFormatter={(label) => {
+              const date = new Date(label);
+              return date.toLocaleDateString("en-US", {
+                weekday: "short", // Mon, Tue, etc.
+                month: "short", // Jan, Feb
+                day: "numeric", // 1, 2, 3...
+              });
+            }}
+            cursor={{ stroke: "transparent" }}
             contentStyle={{
               backgroundColor: "#fff",
               borderRadius: "8px",
