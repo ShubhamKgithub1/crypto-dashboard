@@ -1,0 +1,31 @@
+import { useSelector, useDispatch } from "react-redux";
+import Navbar from "../components/Navbar";
+import { selectNewsData,selectNewsState,fetchNewsData } from "../features/newsSlice";
+import { useEffect } from "react";
+import NewsCard from "../components/NewsCard";
+const NewsPage = () => {
+  const status = useSelector(selectNewsState);
+  const articles = useSelector(selectNewsData);
+  const dispatch = useDispatch();
+  useEffect(()=>
+  {
+    if (status === "idle") {
+      dispatch(fetchNewsData());
+    };
+  });
+  return (
+    <div className="flex flex-col p-4 h-[100dvh] gap-4">
+      <header>
+        <Navbar title="News" showLiveStatus={false}/>
+        <p className="text-gray-500">Latest Crypto News..</p>
+      </header>
+      <div className="flex flex-col gap-4 overflow-y-auto">
+        {articles && articles.map((article,id)=>
+        <NewsCard key={id} article={article}/>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default NewsPage;

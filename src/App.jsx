@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import Dashboard from "./pages/Dashboard";
 import Analytics from "./pages/Analytics";
 import { fetchMarketsSnapshot } from "./features/marketsSnapshotSlice";
+import NewsPage from "./pages/NewsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +38,9 @@ function App() {
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-slate-200">
         <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/analytics" element={<Analytics/>} />
+            <Route path="/layers" element={<Analytics/>} />
+            <Route path="/news" element={<NewsPage/>} />
           </Routes>
       </main>
     </div>

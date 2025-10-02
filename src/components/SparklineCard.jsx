@@ -1,4 +1,5 @@
 import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { formatNumber } from "../utils/formatNumber";
 
 const SparklineCard = ({ title, history, color }) => {
   // history = coinsHistory[coinId] (from Redux)
@@ -19,7 +20,7 @@ const SparklineCard = ({ title, history, color }) => {
         <h1 className="text-sm font-medium text-gray-600">{title}</h1>
         {latestPrice && (
           <p className="text-lg font-bold text-gray-900">
-            ${latestPrice.toLocaleString()}
+            ${formatNumber(latestPrice)}
           </p>
         )}
       </div>

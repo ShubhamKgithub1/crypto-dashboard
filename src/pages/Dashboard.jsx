@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col flex-1 min-h-0 p-4 gap-6">
-      <Navbar title={"Crypto Dashboard"} />
+      <Navbar title={"Crypto Dashboard"} showLiveStatus={true}/>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {marketStatus === "loading" || marketStatus === "failed"
           ? Array(4)

@@ -1,4 +1,5 @@
-const BASE_URL = "https://api.coingecko.com/api/v3";
+
+import { BASE_URL,BASE_URL_NEWS, NEWS_API_KEY } from "../utils/constant";
 
 export async function fetchMarketsSnapshotApi() {
   const res = await fetch(
@@ -13,22 +14,6 @@ export async function fetchMarketDataApi() {
     `${BASE_URL}/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,dogecoin,solana&sparkline=false`
   );
   if (!res.ok) throw new Error("Failed to fetch market data");
-  return res.json();
-}
-
-export async function fetchTopCoinsOverallApi() {
-  const res = await fetch(
-    `${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false`
-  );
-  if (!res.ok) throw new Error("Failed to fetch top coins overall");
-  return res.json();
-}
-
-export async function fetchTopCoinsDailyApi() {
-  const res = await fetch(
-    `${BASE_URL}/coins/markets?vs_currency=usd&order=volume_desc&per_page=10&page=1&sparkline=false`
-  );
-  if (!res.ok) throw new Error("Failed to fetch top coins (24h)");
   return res.json();
 }
 
@@ -91,16 +76,16 @@ export async function fetchPriceHistoryDataApi() {
   return { coinsHistory, marketCapHistory, dominanceHistory };
 }
 
-
-export async function fetchMoversDataApi() {
-  const res = await fetch(
-    `${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h`
-  );
-  if (!res.ok) throw new Error("Failed to fetch movers data");
-  return res.json();
-}
 export async function fetchGlobalDataApi() {
   const res = await fetch(`${BASE_URL}/global`);
   if (!res.ok) throw new Error("Failed to fetch global market data");
+  return res.json();
+}
+
+export async function fetchNewsApi() {
+  const res = await fetch(
+    `${BASE_URL_NEWS}/posts/?auth_token=${NEWS_API_KEY}`
+  );
+  if (!res.ok) throw new Error("Failed to fetch news");
   return res.json();
 }

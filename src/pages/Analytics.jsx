@@ -29,7 +29,7 @@ const Analytics = () => {
   return (
     <div className="flex-1 flex flex-col p-4 gap-6">
       <header>
-        <Navbar title="Analytics" />
+        <Navbar title="Analytics" showLiveStatus={true}/>
         <p className="text-gray-500">Detailed crypto insights and trends</p>
       </header>
       <div className="grid grid-cols-4 gap-6">

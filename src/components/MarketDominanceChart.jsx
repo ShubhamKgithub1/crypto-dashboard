@@ -11,7 +11,6 @@ import { selectDominanceHistory } from "../features/historySlice";
 
 const MarketDominanceChart = () => {
   const dominanceData = useSelector(selectDominanceHistory);
-  console.log(dominanceData);
   if (!dominanceData) {
     return null;
   }
