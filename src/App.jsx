@@ -2,10 +2,7 @@ import "./App.css";
 import Sidebar from "./components/Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { fetchGlobalData } from "./features/marketSlice";
-// import { fetchTopCoinsOverall, fetchTopCoinsDaily } from "./features/topCoinsSlice";
 import { fetchPriceHistoryData } from "./features/historySlice";
-// import { fetchMoversData } from "./features/moversSlice";
 import { useEffect } from "react";
 import Dashboard from "./pages/Dashboard";
 import Analytics from "./pages/Analytics";
@@ -18,7 +15,6 @@ function App() {
   useEffect(() => {
     dispatch(fetchMarketsSnapshot());
     dispatch(fetchPriceHistoryData());
-    dispatch(fetchGlobalData());
 
     //  const interval = setInterval(() => {
     //   // dispatch(fetchMarketData());

@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
-import { selectGlobalStats } from "../features/marketSlice";
+import { fetchGlobalData, selectGlobalStats,selectGlobalStatus } from "../features/marketSlice";
 import StatCard from "../components/StatCard";
 import { formatNumber } from "../utils/formatNumber";
 import MarketCapTrendChart from "../components/MarketCapTrendChart";
@@ -9,9 +9,12 @@ import SparklineCard from "../components/SparklineCard";
 import { selectCoinsHistory } from "../features/historySlice";
 import TopCoinsChart from "../components/TopCoinsChart";
 import { selectTopCoinsDaily } from "../features/snapshotSelectors";
+import { useEffect } from "react";
 
 const Analytics = () => {
+    const dispatch = useDispatch();
   const globalStats = useSelector(selectGlobalStats);
+  const globalStatus = useSelector(selectGlobalStatus);
   const coinsHistory = useSelector(selectCoinsHistory);
   const topCoins24h = useSelector(selectTopCoinsDaily);
   const kpiCards = [
@@ -26,6 +29,13 @@ const Analytics = () => {
     },
     { name: "Active Markets", price: formatNumber(globalStats.markets) },
   ];
+
+  useEffect(()=>{
+    if(globalStatus=== "idle"){
+          dispatch(fetchGlobalData());
+    }
+  });
+  
   return (
     <div className="flex-1 flex flex-col p-4 gap-6">
       <header>
