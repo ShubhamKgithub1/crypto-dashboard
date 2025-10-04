@@ -12,6 +12,7 @@ const initialState = {
   coinsHistory: {},
   marketCapHistory: [],
   dominanceHistory: [],
+  timeRange: "7d",
   status: "idle",
   lastUpdated: null,
   error: null,
@@ -28,6 +29,9 @@ const historySlice = createSlice({
       state.status = "idle";
       state.error = null;
       state.lastUpdated = null;
+    },
+    setTimeRange: (state, action) => {
+      state.timeRange = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -50,13 +54,14 @@ const historySlice = createSlice({
   },
 });
 
-export const { clearHistoryData } = historySlice.actions;
+export const { clearHistoryData,setTimeRange } = historySlice.actions;
 
 export const selectCoinsHistory = (state) => state.history.coinsHistory;
 export const selectMarketCapHistory = (state) => state.history.marketCapHistory;
 export const selectDominanceHistory = (state) => state.history.dominanceHistory;
 export const selectCoinsHistoryStatus = (state) => state.history.status;
 export const selectCoinsHistoryError = (state) => state.history.error;
+export const selectTimeRange = (state) => state.history.timeRange;
 export const selectCoinsHistoryLastUpdated = (state) =>
   state.history.lastUpdated;
 

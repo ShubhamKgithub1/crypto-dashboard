@@ -48,10 +48,7 @@ const Dashboard = () => {
           btcStatus === "failed" ? (
             <ChartSkeleton className={"h-full"} />
           ) : (
-            <div className="flex flex-col h-full p-4">
-              <h2 className="text-lg font-semibold mb-4">Bitcoin Price</h2>
-              <BtcPriceChart />
-            </div>
+           <BtcPriceChart />
           )}
         </div>
         <div className="  bg-white rounded-xl shadow-md transition hover:shadow-lg">

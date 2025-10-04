@@ -23,7 +23,7 @@ export async function fetchPriceHistoryDataApi() {
 
   const promises = coinIds.map(async (id) => {
     const res = await fetch(
-      `${BASE_URL}/coins/${id}/market_chart?vs_currency=usd&days=7&interval=daily`
+      `${BASE_URL}/coins/${id}/market_chart?vs_currency=usd&days=30&interval=daily`
     );
     if (!res.ok) throw new Error(`Failed to fetch data for ${id}`);
     const data = await res.json();

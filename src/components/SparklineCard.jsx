@@ -2,15 +2,13 @@ import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { formatNumber } from "../utils/formatNumber";
 
 const SparklineCard = ({ title, history, color }) => {
-  // history = coinsHistory[coinId] (from Redux)
 
-  // Convert raw [timestamp, price] into objects for Recharts
   const data =
-    history?.prices?.map(([timestamp, price]) => ({
+    history?.prices?.slice(-14).map(([timestamp, price]) => ({
       time: timestamp,
       price,
     })) || [];
-
+    console.log(data);
   // Latest price (last element)
   const latestPrice = data.length > 0 ? data[data.length - 1].price : null;
 
@@ -24,7 +22,7 @@ const SparklineCard = ({ title, history, color }) => {
           </p>
         )}
       </div>
-      <div className="h-full w-[60%]">
+      <div className="h-full w-[70%]">
         <ResponsiveContainer height="100%" width="100%">
           <AreaChart data={data}>
             <YAxis hide domain={["dataMin", "dataMax"]} />

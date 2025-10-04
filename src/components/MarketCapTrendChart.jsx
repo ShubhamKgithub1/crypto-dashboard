@@ -1,24 +1,34 @@
 import {
   Area,
   AreaChart,
-  Line,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
-import { selectMarketCapHistory } from "../features/historySlice";
+import { selectMarketCapHistory, selectTimeRange } from "../features/historySlice";
 import { useSelector } from "react-redux";
+import { sliceData } from "../utils/sliceData";
+import TimeRangeDropdown from "./TimeRangeDropdown";
 
 const MarketCapTrendChart = () => {
+    const range = useSelector(selectTimeRange);
   const data = useSelector(selectMarketCapHistory);
-  const chartData = data?.map(([timestamp, cap]) => ({
-    date: new Date(timestamp).toLocaleDateString("en-US", { weekday: "short" }),
+  const filteredData = sliceData(data, range);
+  const chartData = filteredData?.map(([timestamp, cap]) => ({
+    date: new Date(timestamp).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    }),
     marketCap: cap,
   }));
 
   return (
-    <div className="flex-1">
+    <div className="flex-1 flex flex-col">
+      <div className="flex justify-between">
+      <h2 className="text-lg font-semibold mb-4">Global Market Cap ({range})</h2>
+        <TimeRangeDropdown />
+      </div>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={chartData}
