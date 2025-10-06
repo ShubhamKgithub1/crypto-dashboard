@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Analytics from "./pages/Analytics";
 import { fetchMarketsSnapshot } from "./features/marketsSnapshotSlice";
 import NewsPage from "./pages/NewsPage";
+import Modal from "./components/Modal";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
             <Route path="/news" element={<NewsPage/>} />
           </Routes>
       </main>
+      <Modal/>
     </div>
     </Router>
   );

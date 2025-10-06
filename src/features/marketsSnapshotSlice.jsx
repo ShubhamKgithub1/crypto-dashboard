@@ -44,4 +44,5 @@ const marketsSnapshotSlice = createSlice({
 export const { clearSnapshot } = marketsSnapshotSlice.actions;
 export const selectMarketsSnapshot = (state) => state.marketsSnapshot.data;
 export const selectSnapshotStatus = (state) => state.marketsSnapshot.status;
+export const selectSnapshotLastUpdated = (state) => state.marketsSnapshot.lastUpdated;
 export default marketsSnapshotSlice.reducer;

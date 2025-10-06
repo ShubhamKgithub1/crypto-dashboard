@@ -12,7 +12,7 @@ const initialState = {
   coinsHistory: {},
   marketCapHistory: [],
   dominanceHistory: [],
-  timeRange: "7d",
+  timeRange: "30d",
   status: "idle",
   lastUpdated: null,
   error: null,

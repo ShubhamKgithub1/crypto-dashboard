@@ -5,6 +5,8 @@ import {
   Tooltip,
   ResponsiveContainer,
   Line,
+  AreaChart,
+  Area,
 } from "recharts";
 import { useSelector } from "react-redux";
 import { selectCoinsHistory, selectTimeRange } from "../features/historySlice";
@@ -32,7 +34,7 @@ function BtcPriceChart() {
         <TimeRangeDropdown />
       </div>
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={chartData}
+        <AreaChart data={chartData}
         margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
           <defs>
             <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
@@ -49,9 +51,16 @@ function BtcPriceChart() {
               <stop offset="100%" stopColor="#00f2fe" />
             </linearGradient>
             <linearGradient id="gradient-fill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#82ca9d" stopOpacity={0.8} />
-              <stop offset="100%" stopColor="#82ca9d" stopOpacity={0.1} />
+              <stop offset="0%" stopColor="#00f2fe" stopOpacity={0.3} />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity={0.05} />
             </linearGradient>
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
           </defs>
           <XAxis
             dataKey="date"
@@ -59,6 +68,7 @@ function BtcPriceChart() {
             tickLine={false}
           />
           <YAxis
+          tick={{ textAnchor: "start", dx: -50 }}
             dataKey="price"
             axisLine={false}
             tickLine={false}
@@ -81,15 +91,16 @@ function BtcPriceChart() {
               boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
             }}
           />
-          <Line
+          <Area
             type="monotone"
             dataKey="price"
             stroke="url(#lineGradient)"
+            fill="url(#gradient-fill)"
+            filter="url(#glow)"
             strokeWidth={3}
-            filter="url(#shadow)"
             dot={false}
           />
-        </LineChart>
+        </AreaChart>
       </ResponsiveContainer>
     </div>
   );

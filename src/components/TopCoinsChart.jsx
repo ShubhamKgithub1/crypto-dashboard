@@ -7,9 +7,10 @@ import {
   Tooltip,
 } from "recharts";
 
-const TopCoinsChart = ({data, dataKey = "market_cap", title ="Market Cap", formatter}) => {
+const TopCoinsChart = ({data, dataKey = "market_cap",header , title ="Market Cap", formatter}) => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full flex flex-col gap-4 p-4">
+       <h2 className="text-lg font-semibold">{header}</h2>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{left:15}}>
           <defs>
@@ -20,6 +21,7 @@ const TopCoinsChart = ({data, dataKey = "market_cap", title ="Market Cap", forma
           </defs>
           <XAxis dataKey="name" axisLine={false} tickLine={false}/>
           <YAxis
+           tick={{ textAnchor: "start", dx: -65 }}
             axisLine={false}
             tickLine={false}
             tickFormatter={formatter} // billions

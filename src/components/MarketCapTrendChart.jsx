@@ -6,13 +6,16 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { selectMarketCapHistory, selectTimeRange } from "../features/historySlice";
+import {
+  selectMarketCapHistory,
+  selectTimeRange,
+} from "../features/historySlice";
 import { useSelector } from "react-redux";
 import { sliceData } from "../utils/sliceData";
 import TimeRangeDropdown from "./TimeRangeDropdown";
 
 const MarketCapTrendChart = () => {
-    const range = useSelector(selectTimeRange);
+  const range = useSelector(selectTimeRange);
   const data = useSelector(selectMarketCapHistory);
   const filteredData = sliceData(data, range);
   const chartData = filteredData?.map(([timestamp, cap]) => ({
@@ -26,7 +29,9 @@ const MarketCapTrendChart = () => {
   return (
     <div className="flex-1 flex flex-col">
       <div className="flex justify-between">
-      <h2 className="text-lg font-semibold mb-4">Global Market Cap ({range})</h2>
+        <h2 className="text-lg font-semibold mb-4">
+          Global Market Cap ({range})
+        </h2>
         <TimeRangeDropdown />
       </div>
       <ResponsiveContainer width="100%" height="100%">
@@ -64,6 +69,7 @@ const MarketCapTrendChart = () => {
             interval="preserveStartEnd"
           />
           <YAxis
+            orientation="left"
             tickLine={false}
             axisLine={false}
             domain={["dataMin", "dataMax"]}

@@ -46,7 +46,9 @@ const MarketDominanceChart = () => {
               })
             }
           />
-          <YAxis tickFormatter={(val) => `${val}%`} tickLine={false} axisLine={false} padding={{bottom:20, top:0, left:0, right:0}}/>
+          <YAxis
+           tick={{ textAnchor: "start", dx: -40 }}
+          tickFormatter={(val) => `${val}%`} tickLine={false} axisLine={false} padding={{bottom:20, top:0, left:0, right:0}}/>
           <Area
             type="monotone"
             dataKey="bitcoin"

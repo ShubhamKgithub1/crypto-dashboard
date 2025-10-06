@@ -27,6 +27,10 @@ const Analytics = () => {
       name: "BTC Dominance",
       price: `${globalStats.btcDominance?.toFixed(2)}%`,
     },
+    {
+      name: "ETH Dominance",
+      price: `${globalStats.ethDominance?.toFixed(2)}%`,
+    },
     { name: "Active Markets", price: formatNumber(globalStats.markets) },
   ];
 
@@ -42,7 +46,7 @@ const Analytics = () => {
         <Navbar title="Analytics" showLiveStatus={true}/>
         <p className="text-gray-500">Detailed crypto insights and trends</p>
       </header>
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-5 gap-6">
         {kpiCards.map((card, id) => (
           <StatCard
             key={id}
@@ -56,10 +60,10 @@ const Analytics = () => {
       {/* Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1 min-h-0">
         {/* Left Column */}
-        <div className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition flex flex-col">
-          <h2 className="text-lg font-semibold mb-4">Top Coins in 24h by Volume</h2>
+        <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition flex">
           <TopCoinsChart
             data={topCoins24h}
+            header={"Top Coins in 24h by Volume"}
             dataKey="total_volume"
             title="Volume"
             formatter={(value) => `$${(value / 1e9).toFixed(2)}B`}

@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { selectMarketLastUpdated } from "../features/marketSlice";
+import { selectSnapshotLastUpdated } from "../features/marketsSnapshotSlice";
 import { useEffect, useState } from "react";
 import formatRelativeTime from "../utils/time";
 
 const Navbar = ({title, showLiveStatus}) => {
-  const lastUpdated = useSelector(selectMarketLastUpdated);
+  const lastUpdated = useSelector(selectSnapshotLastUpdated);
   const [relativeTime, setRelativeTime] = useState("");
   
   useEffect(() => {
