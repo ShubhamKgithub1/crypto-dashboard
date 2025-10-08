@@ -35,7 +35,7 @@ export const selectTopGainers = createSelector(
     [...coins]
       .filter((c) => typeof c.price_change_percentage_24h === "number")
       .sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
-      .slice(0, 3)
+      .slice(0, 4)
 );
 
 export const selectTopLosers = createSelector(
@@ -44,5 +44,5 @@ export const selectTopLosers = createSelector(
     [...coins]
       .filter((c) => typeof c.price_change_percentage_24h === "number")
       .sort((a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h)
-      .slice(0, 3)
+      .slice(0, 4)
 );

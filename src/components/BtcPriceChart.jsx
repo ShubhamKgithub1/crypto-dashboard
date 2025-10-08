@@ -30,7 +30,7 @@ function BtcPriceChart() {
   return (
     <div className="flex flex-col h-full p-4 gap-4">
       <div className="flex justify-between">
-        <h2 className="text-lg font-semibold">Bitcoin Price ({range})</h2>
+        <h2 className="text-xl font-semibold">Bitcoin Price ({range})</h2>
         <TimeRangeDropdown />
       </div>
       <ResponsiveContainer width="100%" height="100%">

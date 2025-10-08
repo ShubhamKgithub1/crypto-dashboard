@@ -36,7 +36,6 @@ function App() {
         <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/analytics" element={<Analytics/>} />
-            <Route path="/layers" element={<Analytics/>} />
             <Route path="/news" element={<NewsPage/>} />
           </Routes>
       </main>

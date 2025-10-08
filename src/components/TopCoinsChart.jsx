@@ -10,7 +10,7 @@ import {
 const TopCoinsChart = ({data, dataKey = "market_cap",header , title ="Market Cap", formatter}) => {
   return (
     <div className="w-full h-full flex flex-col gap-4 p-4">
-       <h2 className="text-lg font-semibold">{header}</h2>
+       <h2 className="text-xl font-semibold">{header}</h2>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{left:15}}>
           <defs>
@@ -19,7 +19,7 @@ const TopCoinsChart = ({data, dataKey = "market_cap",header , title ="Market Cap
               <stop offset="100%" stopColor="#00f2fe" />
             </linearGradient>
           </defs>
-          <XAxis dataKey="name" axisLine={false} tickLine={false}/>
+          <XAxis dataKey="name" axisLine={false} tickLine={false} padding={{left:-20}}/>
           <YAxis
            tick={{ textAnchor: "start", dx: -65 }}
             axisLine={false}
@@ -39,7 +39,7 @@ const TopCoinsChart = ({data, dataKey = "market_cap",header , title ="Market Cap
           <Bar
             dataKey={dataKey}
             fill="url(#barGradient)"
-            barSize={40}
+            barSize={20}
             radius={[8, 8, 0, 0]}
           />
         </BarChart>

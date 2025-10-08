@@ -54,7 +54,7 @@ const historySlice = createSlice({
   },
 });
 
-export const { clearHistoryData,setTimeRange } = historySlice.actions;
+export const { clearHistoryData, setTimeRange } = historySlice.actions;
 
 export const selectCoinsHistory = (state) => state.history.coinsHistory;
 export const selectMarketCapHistory = (state) => state.history.marketCapHistory;

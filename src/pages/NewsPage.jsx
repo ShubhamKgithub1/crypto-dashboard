@@ -21,10 +21,9 @@ const NewsPage = () => {
   return (
     <div className="flex flex-col p-4 h-[100dvh] gap-4">
       <header>
-        <Navbar title="News" showLiveStatus={false} />
-        <p className="text-gray-500">Latest Crypto News..</p>
+        <Navbar title="News" subHeader={"Latest Crypto News.."} showLiveStatus={false} />
       </header>
-      <div className="flex flex-col gap-4 overflow-y-auto">
+      <div className="flex flex-col gap-4 overflow-y-auto hide-scrollbar">
         {articles ?
           (articles.map((article) => (
             <NewsCard

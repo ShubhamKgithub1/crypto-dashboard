@@ -4,19 +4,21 @@ import "react-circular-progressbar/dist/styles.css";
 import { useDispatch } from "react-redux";
 import { openModal } from "../features/modalSlice";
 
-const StatCard = ({ name, price, change, changeType,data }) => {
+const StatCard = ({ name, price, change, changeType, data }) => {
   const dispatch = useDispatch();
   const percent = change ? parseFloat(change) : null;
   const isPositive = changeType === "positive";
   const Icon = isPositive ? ArrowUpRight : ArrowDownRight;
 
   return (
-    <div onClick={()=>dispatch(openModal(data))}
-    className="bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer">
+    <div
+      onClick={() => dispatch(openModal(data))}
+      className="bg-white p-4 rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
+    >
       <div>
         <h2 className="text-gray-500 text-sm">{name}</h2>
         <p className="text-xl font-bold">{price}</p>
-         {change && changeType && (
+        {change && changeType && (
           <div className="flex items-center gap-1">
             <Icon
               className={`w-4 h-4 ${
