@@ -84,7 +84,7 @@ export async function fetchGlobalDataApi() {
 
 export async function fetchNewsApi() {
   const res = await fetch(
-    `${BASE_URL_NEWS}/posts/?auth_token=${NEWS_API_KEY}`
+    `${BASE_URL_NEWS}/news?apikey=${NEWS_API_KEY}&q=cryptocurrency&language=en`
   );
   if (!res.ok) throw new Error("Failed to fetch news");
   return res.json();

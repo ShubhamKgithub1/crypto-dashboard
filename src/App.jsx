@@ -9,6 +9,7 @@ import Analytics from "./pages/Analytics";
 import { fetchMarketsSnapshot } from "./features/marketsSnapshotSlice";
 import NewsPage from "./pages/NewsPage";
 import Modal from "./components/Modal";
+import NewsModal from "./components/NewsModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function App() {
           </Routes>
       </main>
       <Modal/>
+      <NewsModal/>
     </div>
     </Router>
   );

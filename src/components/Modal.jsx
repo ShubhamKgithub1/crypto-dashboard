@@ -29,7 +29,7 @@ const Modal = () => {
           dispatch(closeModal());
         }
       }}
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm"
     >
       <div
         onClick={() => dispatch(closeModal())}

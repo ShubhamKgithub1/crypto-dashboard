@@ -27,11 +27,11 @@ const NewsPage = () => {
         {articles ?
           (articles.map((article) => (
             <NewsCard
-              key={article.id}
+              key={article.article_id}
               article={article}
-              isExpanded={expandedId === article.id}
+              isExpanded={expandedId === article.article_id}
               onToggle={() =>
-                setExpandedId(expandedId === article.id ? null : article.id)
+                setExpandedId(expandedId === article.article_id ? null : article.article_id)
               }
             />
           ))):(Array(10).fill(0).map((_,i)=><CardSkeleton key={i}/>))}

@@ -7,7 +7,6 @@ const SparklineCard = ({ title, history, color }) => {
       time: timestamp,
       price,
     })) || [];
-  console.log(data);
   // Latest price (last element)
   const latestPrice = data.length > 0 ? data[data.length - 1].price : null;
 

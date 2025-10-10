@@ -4,6 +4,7 @@ import historyReducer from "../features/historySlice";
 import marketsSnapshotReducer from "../features/marketsSnapshotSlice";
 import newsReducer from "../features/newsSlice";
 import modalReducer from "../features/modalSlice";
+import newsModalReducer from "../features/newsModalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     history : historyReducer,
     news : newsReducer,
     modal : modalReducer,
+    newsModal : newsModalReducer,
   },
 });
