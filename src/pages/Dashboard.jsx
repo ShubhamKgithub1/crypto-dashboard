@@ -3,8 +3,11 @@ import BtcPriceChart from "../components/BtcPriceChart";
 import VolumePieChart from "../components/VolumePieChart";
 import TopCoinsChart from "../components/TopCoinsChart";
 import TopMovers from "../components/TopMovers";
-import { useSelector } from "react-redux";
-import { selectCoinsHistoryStatus } from "../features/historySlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchPriceHistoryData,
+  selectCoinsHistoryStatus,
+} from "../features/historySlice";
 import Navbar from "../components/Navbar";
 import {
   selectSnapshotStatus,
@@ -12,12 +15,24 @@ import {
 } from "../features/snapshotSelectors";
 import { selectTopCoinsOverall } from "../features/snapshotSelectors";
 import DashboardShimmer from "./DashboardShimmer";
+import { fetchMarketsSnapshot } from "../features/marketsSnapshotSlice";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   const coins = useSelector(selectMarketsSnapshot);
   const marketStatus = useSelector(selectSnapshotStatus);
   const btcStatus = useSelector(selectCoinsHistoryStatus);
   const topCoinsOverall = useSelector(selectTopCoinsOverall);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (marketStatus === "idle") {
+      dispatch(fetchMarketsSnapshot());
+    }
+    if (btcStatus === "idle") {
+      dispatch(fetchPriceHistoryData());
+    }
+  });
   if (!coins.length > 0 || btcStatus === "loading") {
     return <DashboardShimmer title={"Crypto Dashboard"} />;
   }

@@ -23,8 +23,7 @@ const NewsModal = () => {
       onClick={handleBackdropClick}
       className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
     >
-      <div className="bg-white w-[90%] max-h-[70dvh] max-w-2xl rounded-xl overflow-hidden shadow-lg relative animate-fadeIn">
-
+      <div className="flex flex-col bg-white w-[90%] max-w-2xl rounded-xl overflow-auto hide-scrollbar shadow-lg relative animate-fadeIn">
         <button
           onClick={() => dispatch(closeNewsModal())}
           className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
@@ -32,15 +31,16 @@ const NewsModal = () => {
           <X size={20} />
         </button>
 
-        {image_url && (
+        <div className="min-h-[30dvh] h-[35dvh] overflow-hidden w-full bg-slate-200">
+          {image_url && (
           <img
             src={image_url}
-            alt={title}
-            className="w-full object-cover max-h-[40dvh]"
+            className="w-full object-center max-h-[40dvh]"
           />
         )}
+        </div>
 
-        <div className="p-4 space-y-3">
+        <div className="flex-1 flex flex-col p-4 space-y-3">
           <div className="flex items-center gap-2 text-gray-500 text-sm">
             <Calendar size={14} />
             <span>{formatDateTime(pubDate)}</span>
@@ -49,7 +49,7 @@ const NewsModal = () => {
           <h1 className="text-xl font-semibold text-gray-800">{title}</h1>
 
           <p className="text-gray-600 text-sm leading-relaxed">
-            {description.length>500? description.slice(500):description || "No description available."}
+            {description.length>300? description.slice(0,300)+"...":description || "No description available."}
           </p>
 
           {source_url && (

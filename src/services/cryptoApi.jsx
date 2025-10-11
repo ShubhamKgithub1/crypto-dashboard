@@ -82,10 +82,29 @@ export async function fetchGlobalDataApi() {
   return res.json();
 }
 
-export async function fetchNewsApi() {
-  const res = await fetch(
-    `${BASE_URL_NEWS}/news?apikey=${NEWS_API_KEY}&q=cryptocurrency&language=en`
-  );
-  if (!res.ok) throw new Error("Failed to fetch news");
-  return res.json();
+export async function fetchNewsApi(category) {
+ try {
+    let url = `${BASE_URL_NEWS}/news?apikey=${NEWS_API_KEY}&language=en`;
+
+    if (category) {
+      // Handle special case: crypto should use `q` instead of `category`
+      if (category.toLowerCase() === "crypto") {
+        url += `&q=crypto`;
+      } else {
+        url += `&category=${category}`;
+      }
+    }
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (!res.ok || data.status !== "success") {
+      throw new Error(data.message || "Failed to fetch news");
+    }
+
+    return data;
+  } catch (error) {
+    console.error("News API error:", error);
+    throw error;
+  }
 }

@@ -3,7 +3,7 @@ import { formatDateTime } from "../utils/FormatDateTime";
 import { useDispatch } from "react-redux";
 import { openNewsModal } from "../features/newsModalSlice";
 
-const NewsCard = ({ article, isExpanded, onToggle }) => {
+const NewsCard = ({ article }) => {
   const dispatch = useDispatch();
   const { title, description, pubDate, image_url, source_url, source_id } = article;
   return (
@@ -13,7 +13,7 @@ const NewsCard = ({ article, isExpanded, onToggle }) => {
             No Image
           </div>}
       </div>
-      <div className="flex flex-col w-[90%] px-4 py-1">
+      <div className="flex flex-col gap-1 w-[75%] px-4 py-1">
         <div className="flex items-center gap-1">
           <span>
             <Calendar size={12} className="text-gray-500" />
@@ -22,16 +22,11 @@ const NewsCard = ({ article, isExpanded, onToggle }) => {
             {formatDateTime(pubDate)}
           </span>
         </div>
-        <div className="flex justify-between cursor-pointer" onClick={onToggle}>
-          <h1 className="text-xl text-gray-700 font-semibold">{title}</h1>
-          <span>{isExpanded ? "▲" : "▼"}</span>
-        </div>
-        <div className={`transition-all duration-300 overflow-hidden`}>
-          <p className={`text-sm text-gray-500 font-semibold`}>
-            {description.slice(0, 150) + "..."}
-          </p>
-        </div>
-        <div className="">
+        <h1 className="text-xl text-gray-700 font-semibold">{title}</h1>
+          {description && <p className={`text-sm text-gray-500 font-semibold`}>
+            {description.length > 400 ? description.slice(0, 400) + "...":description}
+          </p>}
+        <div className="mt-1">
           <span className="text-sm text-gray-600 font-semibold">Source :</span>
           {source_url ? (
             <a

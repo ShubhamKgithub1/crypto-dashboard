@@ -3,13 +3,15 @@ import { fetchNewsApi } from "../services/cryptoApi";
 
 export const fetchNewsData = createAsyncThunk(
     "news/fetchNewsData",
-    async () =>{
-        return await fetchNewsApi();
+    async (category, {getState}) =>{
+         const selectedCategory = category || getState().news.category;
+        return await fetchNewsApi(selectedCategory);
     }
 );
 
 const initialState = {
     articles:[],
+    category: "crypto",
     articlesState: "idle",
     articlesUpdateTime : null,
 };
@@ -22,6 +24,9 @@ const newsSlice = createSlice({
             state.articles= [];
             state.articlesState = "idle";
             state.articlesUpdateTime = null;
+        },
+        setCategory(state, action){
+            state.category = action.payload;
         },
     },
     extraReducers:(builder)=>{
@@ -42,9 +47,10 @@ const newsSlice = createSlice({
     },
 });
 
-export const {clearNewsSlice} = newsSlice.actions;
+export const {clearNewsSlice, setCategory} = newsSlice.actions;
 
 export const selectNewsData = (state)=>state.news.articles.results;
+export const selectCategory = (state)=>state.news.category;
 export const selectNewsState = (state)=>state.news.articlesState;
 export const selectNewsUpdateTime = (state)=>state.news.articlesUpdateTime;
 
