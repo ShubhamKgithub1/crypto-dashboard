@@ -4,7 +4,30 @@ import { fetchGlobalDataApi } from "../services/cryptoApi";
 export const fetchGlobalData = createAsyncThunk(
   "market/fetchGlobalData",
   async () => {
-    return await fetchGlobalDataApi();
+    const cacheKey = "globalDataCache";
+    const timeLimit = 1000 * 60 * 5;
+    const now = Date.now();
+
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      const isFresh = now - parsed.timestamp < timeLimit;
+
+      if (isFresh) {
+        console.log("✅ Using cached global data");
+        return parsed.data;
+      }
+    }
+    console.log("🌐 Fetching new global data...");
+    const data = await fetchGlobalDataApi();
+    localStorage.setItem(
+      cacheKey,
+      JSON.stringify({
+        data,
+        timestamp: now,
+      })
+    );
+    return data;
   }
 );
 

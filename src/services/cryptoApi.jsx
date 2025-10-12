@@ -9,14 +9,6 @@ export async function fetchMarketsSnapshotApi() {
   return res.json();
 }
 
-export async function fetchMarketDataApi() {
-  const res = await fetch(
-    `${BASE_URL}/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,dogecoin,solana&sparkline=false`
-  );
-  if (!res.ok) throw new Error("Failed to fetch market data");
-  return res.json();
-}
-
 
 export async function fetchPriceHistoryDataApi() {
   const coinIds = ["bitcoin", "ethereum", "solana"];

@@ -3,7 +3,33 @@ import { fetchMarketsSnapshotApi } from "../services/cryptoApi";
 
 export const fetchMarketsSnapshot = createAsyncThunk(
   "marketsSnapshot/fetchMarketsSnapshot",
-  async () => await fetchMarketsSnapshotApi()
+  async () => {
+    const cacheKey = "marketSnapshotCache";
+    const timeLimit = 1000 * 60 * 5;
+    const now = Date.now();
+
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      const isFresh = now - parsed.timestamp < timeLimit;
+
+      if (isFresh) {
+        console.log("✅ Using cached market snapshot");
+        return parsed.data;
+      }
+    }
+
+    console.log("🌐 Fetching new market snapshot...");
+    const data = await fetchMarketsSnapshotApi();
+    localStorage.setItem(
+      cacheKey,
+      JSON.stringify({
+        data,
+        timestamp: now,
+      })
+    );
+    return data;
+  }
 );
 
 const initialState = {

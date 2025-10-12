@@ -4,9 +4,42 @@ import { fetchPriceHistoryDataApi } from "../services/cryptoApi";
 export const fetchPriceHistoryData = createAsyncThunk(
   "history/fetchPriceHistoryData",
   async () => {
-    return fetchPriceHistoryDataApi();
+    const cacheKey = "historyDataCache";
+    const cacheTime = 1000 * 60 * 5; // 5 min
+    const now = Date.now();
+
+    let cached = null;
+    try {
+      const raw = localStorage.getItem(cacheKey);
+      if (raw) cached = JSON.parse(raw);
+    } catch (e) {
+      console.warn("⚠️ Invalid cache format, clearing it.", e);
+      localStorage.removeItem(cacheKey);
+    }
+
+    if (cached) {
+      const isFresh = now - cached.timestamp < cacheTime;
+      if (isFresh) {
+        console.log("✅ Using cached history data");
+        return cached.data;
+      }
+    }
+
+    console.log("🌐 Fetching new history data...");
+    const data = await fetchPriceHistoryDataApi();
+
+    localStorage.setItem(
+      cacheKey,
+      JSON.stringify({
+        data,
+        timestamp: now,
+      })
+    );
+
+    return data;
   }
 );
+
 
 const initialState = {
   coinsHistory: {},

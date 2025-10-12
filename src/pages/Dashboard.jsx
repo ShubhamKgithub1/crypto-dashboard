@@ -21,7 +21,7 @@ import { useEffect } from "react";
 const Dashboard = () => {
   const coins = useSelector(selectMarketsSnapshot);
   const marketStatus = useSelector(selectSnapshotStatus);
-  const btcStatus = useSelector(selectCoinsHistoryStatus);
+  const historyStatus = useSelector(selectCoinsHistoryStatus);
   const topCoinsOverall = useSelector(selectTopCoinsOverall);
   const dispatch = useDispatch();
 
@@ -29,11 +29,11 @@ const Dashboard = () => {
     if (marketStatus === "idle") {
       dispatch(fetchMarketsSnapshot());
     }
-    if (btcStatus === "idle") {
+    if (historyStatus === "idle") {
       dispatch(fetchPriceHistoryData());
     }
   });
-  if (!coins.length > 0 || btcStatus === "loading") {
+  if (!coins.length > 0 || historyStatus === "loading") {
     return <DashboardShimmer title={"Crypto Dashboard"} />;
   }
   return (
@@ -77,7 +77,7 @@ const Dashboard = () => {
           <TopMovers status={marketStatus} />
         </div>
       </div>
-      <div className="flex-1 min-h-0 w-[75%] bg-white rounded-xl shadow-md transition hover:shadow-lg flex animate-fadeIn">
+      <div className="flex-1 min-h-0  bg-white rounded-xl shadow-md transition hover:shadow-lg flex animate-fadeIn">
         <div className="flex flex-col flex-1">
           <div className="flex-1 min-h-0">
             <BtcPriceChart />

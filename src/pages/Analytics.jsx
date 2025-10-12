@@ -10,17 +10,20 @@ import { formatNumber } from "../utils/formatNumber";
 import MarketCapTrendChart from "../components/MarketCapTrendChart";
 import MarketDominanceChart from "../components/MarketDominanceChart";
 import SparklineCard from "../components/SparklineCard";
-import { selectCoinsHistory } from "../features/historySlice";
+import { fetchPriceHistoryData, selectCoinsHistory, selectCoinsHistoryStatus } from "../features/historySlice";
 import TopCoinsChart from "../components/TopCoinsChart";
-import { selectTopCoinsDaily } from "../features/snapshotSelectors";
+import { selectSnapshotStatus, selectTopCoinsDaily } from "../features/snapshotSelectors";
 import { useEffect } from "react";
 import AnalyticsShimmer from "./AnalyticsShimmer";
+import { fetchMarketsSnapshot } from "../features/marketsSnapshotSlice";
 
 const Analytics = () => {
   const dispatch = useDispatch();
+  const marketStatus = useSelector(selectSnapshotStatus);
   const globalStats = useSelector(selectGlobalStats);
   const globalStatus = useSelector(selectGlobalStatus);
   const coinsHistory = useSelector(selectCoinsHistory);
+  const historyStatus = useSelector(selectCoinsHistoryStatus);
   const topCoins24h = useSelector(selectTopCoinsDaily);
   const kpiCards = [
     {
@@ -43,6 +46,12 @@ const Analytics = () => {
     if (globalStatus === "idle") {
       dispatch(fetchGlobalData());
     }
+    if (historyStatus === "idle") {
+          dispatch(fetchPriceHistoryData());
+        }
+         if (marketStatus === "idle") {
+              dispatch(fetchMarketsSnapshot());
+            }
   });
 const isEmptyObject = (obj) =>
   !obj || (Object.keys(obj).length === 0 && obj.constructor === Object);
