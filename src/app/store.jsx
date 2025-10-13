@@ -5,6 +5,7 @@ import marketsSnapshotReducer from "../features/marketsSnapshotSlice";
 import newsReducer from "../features/newsSlice";
 import modalReducer from "../features/modalSlice";
 import newsModalReducer from "../features/newsModalSlice";
+import themeReducer from "../features/themeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     news : newsReducer,
     modal : modalReducer,
     newsModal : newsModalReducer,
+    theme : themeReducer,
   },
 });
