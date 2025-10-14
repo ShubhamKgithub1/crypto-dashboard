@@ -12,12 +12,13 @@ import { useSelector } from "react-redux";
 import { selectCoinsHistory, selectTimeRange } from "../features/historySlice";
 import { sliceData } from "../utils/sliceData";
 import TimeRangeDropdown from "./TimeRangeDropdown";
+import { getChartColors } from "../utils/chartColors";
 
 function BtcPriceChart() {
   const range = useSelector(selectTimeRange);
   const data = useSelector(selectCoinsHistory);
   const rawPrices = data?.bitcoin?.prices;
-  const filteredPrices = sliceData(rawPrices, range); // 👈 Apply filter here
+  const filteredPrices = sliceData(rawPrices, range);
 
   const chartData = filteredPrices?.map(([timestamp, price]) => ({
     date: new Date(timestamp).toLocaleDateString("en-US", {
@@ -26,7 +27,9 @@ function BtcPriceChart() {
     }),
     price: price,
   }));
-
+  const theme = useSelector((state) => state.theme.mode);
+  const isDark = theme === "dark";
+  const chartColors = getChartColors(isDark);
   return (
     <div className="flex flex-col h-full p-4 gap-4">
       <div className="flex justify-between">
@@ -34,8 +37,10 @@ function BtcPriceChart() {
         <TimeRangeDropdown />
       </div>
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={chartData}
-        margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
+        <AreaChart
+          data={chartData}
+          margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
+        >
           <defs>
             <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
               <feDropShadow
@@ -54,7 +59,7 @@ function BtcPriceChart() {
               <stop offset="0%" stopColor="#00f2fe" stopOpacity={0.3} />
               <stop offset="100%" stopColor="#ffffff" stopOpacity={0.05} />
             </linearGradient>
-                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="4" result="blur" />
               <feMerge>
                 <feMergeNode in="blur" />
@@ -66,9 +71,10 @@ function BtcPriceChart() {
             dataKey="date"
             axisLine={false}
             tickLine={false}
+            tick={{ fill: chartColors.text }}
           />
           <YAxis
-          tick={{ textAnchor: "start", dx: -50 }}
+            tick={{ fill: chartColors.text, textAnchor: "start", dx: -50 }}
             dataKey="price"
             axisLine={false}
             tickLine={false}
@@ -85,10 +91,11 @@ function BtcPriceChart() {
               "Price",
             ]}
             contentStyle={{
-              backgroundColor: "#fff",
+              backgroundColor: chartColors.bg,
+              color: chartColors.text,
               borderRadius: "8px",
               border: "none",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
             }}
           />
           <Area

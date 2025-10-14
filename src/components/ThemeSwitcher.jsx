@@ -9,7 +9,7 @@ const ThemeSwitcher = ()=>{
         dispatch(toggleTheme());
     };
     return (
-        <div className="dark:bg-white text-white dark:text-slate-600 rounded-full shadow bg-slate-700 p-3 cursor-pointer transition-all duration-200" onClick={handleToggle}>
+        <div className="dark:bg-white text-white dark:text-slate-600 rounded-full shadow bg-slate-700 p-3 cursor-pointer transition-all duration-200 animate-fadeIn" onClick={handleToggle}>
             {themeMode === "light"?<Moon/>:<Sun/>}
         </div>
     )

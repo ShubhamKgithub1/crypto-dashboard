@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import {
   PieChart,
   Pie,
@@ -6,9 +7,13 @@ import {
   Cell,
   Legend,
 } from "recharts";
+import { getChartColors } from "../utils/chartColors";
 
-function VolumePieChart({data}) {
+function VolumePieChart({ data }) {
   const topCoins = data.slice(0, 4);
+  const theme = useSelector((state) => state.theme.mode);
+  const isDark = theme === "dark";
+  const chartColors = getChartColors(isDark);
   return (
     <div className="flex-1">
       <ResponsiveContainer width="100%" height="100%">
@@ -19,8 +24,8 @@ function VolumePieChart({data}) {
             nameKey="name"
             cx="50%"
             cy="50%"
-            innerRadius="50%" // was 65
-            outerRadius="80%" // was 100
+            innerRadius="50%"
+            outerRadius="80%"
             paddingAngle={2}
             label={({ name, percent }) =>
               `${name} ${(percent * 100).toFixed(0)}%`
@@ -40,10 +45,16 @@ function VolumePieChart({data}) {
               "Market Cap",
             ]}
             contentStyle={{
-              backgroundColor: "#fff",
+              backgroundColor: chartColors.bg,
               borderRadius: "8px",
               border: "none",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
+            }}
+            labelStyle={{
+              color: chartColors.text, // fixes label text color
+            }}
+            itemStyle={{
+              color: chartColors.text, // fixes value text color
             }}
           />
           <Legend
@@ -58,7 +69,7 @@ function VolumePieChart({data}) {
                       className="w-3 h-3 rounded-full"
                       style={{ backgroundColor: entry.color }}
                     ></span>
-                    <span className="text-sm font-medium text-gray-700">
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                       {entry.value}
                     </span>
                   </div>

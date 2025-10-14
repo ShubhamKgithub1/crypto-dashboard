@@ -11,7 +11,7 @@ const SparklineCard = ({ title, history, color }) => {
   const latestPrice = data.length > 0 ? data[data.length - 1].price : null;
 
   return (
-    <div className="flex-1 flex justify-between items-center p-3 rounded-2xl shadow-md bg-white hover:shadow-lg transition animate-fadeIn">
+    <div className="flex-1 flex justify-between items-center p-3 rounded-2xl shadow-md bg-white dark:bg-card-dark hover:shadow-lg transition animate-fadeIn">
       <div className="flex flex-col">
         <h1 className="text-sm font-medium text-gray-600">{title}</h1>
         {latestPrice && (

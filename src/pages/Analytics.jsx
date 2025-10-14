@@ -85,7 +85,7 @@ if (
         ))}
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1 min-h-0">
-        <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition flex animate-fadeIn">
+        <div className="bg-white dark:bg-card-dark rounded-xl shadow-md hover:shadow-lg transition flex animate-fadeIn">
           <TopCoinsChart
             data={topCoins24h}
             header={"Top Coins in 24h by Volume"}
@@ -94,12 +94,12 @@ if (
             formatter={(value) => `$${(value / 1e9).toFixed(2)}B`}
           />
         </div>
-        <div className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition flex flex-col animate-fadeIn">
+        <div className="bg-white dark:bg-card-dark p-4 rounded-xl shadow-md hover:shadow-lg transition flex flex-col animate-fadeIn">
           <MarketCapTrendChart />
         </div>
       </div>
       <div className="flex-1 min-h-[100px] grid grid-cols-4 gap-6">
-        <div className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition flex flex-col col-span-3 animate-fadeIn">
+        <div className="bg-white dark:bg-card-dark p-4 rounded-xl shadow-md hover:shadow-lg transition flex flex-col col-span-3 animate-fadeIn">
           <h2 className="text-lg font-semibold mb-4">Market Dominance</h2>
           <MarketDominanceChart />
         </div>

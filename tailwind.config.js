@@ -7,6 +7,10 @@ export default {
   ],
   theme: {
     extend: {
+      colors:{
+         "card-dark": "var(--color-bg-dark)",
+         "text-dark": "var(--color-text)",
+      },
        keyframes: {
         fadeIn: {
           '0%': { opacity: '0' , transform: 'scale(0.95)'},

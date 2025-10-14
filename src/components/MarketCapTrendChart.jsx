@@ -13,10 +13,14 @@ import {
 import { useSelector } from "react-redux";
 import { sliceData } from "../utils/sliceData";
 import TimeRangeDropdown from "./TimeRangeDropdown";
+import { getChartColors } from "../utils/chartColors";
 
 const MarketCapTrendChart = () => {
   const range = useSelector(selectTimeRange);
   const data = useSelector(selectMarketCapHistory);
+    const theme = useSelector((state) => state.theme.mode);
+    const isDark = theme === "dark";
+    const chartColors = getChartColors(isDark);
   const filteredData = sliceData(data, range);
   const chartData = filteredData?.map(([timestamp, cap]) => ({
     date: new Date(timestamp).toLocaleDateString("en-US", {
@@ -40,19 +44,16 @@ const MarketCapTrendChart = () => {
           margin={{ top: 10, right: 0, left: 15, bottom: 0 }}
         >
           <defs>
-            {/* Neon line gradient */}
             <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#6d28d9" />
               <stop offset="100%" stopColor="#00f2fe" />
             </linearGradient>
 
-            {/* Softer area fill */}
             <linearGradient id="gradient-fill" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#00f2fe" stopOpacity={0.3} />
               <stop offset="100%" stopColor="#ffffff" stopOpacity={0.05} />
             </linearGradient>
 
-            {/* Glow effect using SVG filter */}
             <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="4" result="blur" />
               <feMerge>
@@ -67,6 +68,7 @@ const MarketCapTrendChart = () => {
             tickLine={false}
             axisLine={false}
             interval="preserveStartEnd"
+            tick={{ fill: chartColors.text }}
           />
           <YAxis
             orientation="left"
@@ -75,6 +77,7 @@ const MarketCapTrendChart = () => {
             domain={["dataMin", "dataMax"]}
             padding={{ bottom: 20 }}
             tickFormatter={(value) => `$${(value / 1e9).toFixed(1)}B`}
+            tick={{ fill: chartColors.text }}
           />
           <Tooltip
             cursor={{ stroke: "transparent" }}
@@ -83,10 +86,11 @@ const MarketCapTrendChart = () => {
               "Market Cap",
             ]}
             contentStyle={{
-              backgroundColor: "#fff",
+              backgroundColor: chartColors.bg,
+              color: chartColors.text,
               borderRadius: "8px",
               border: "none",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
             }}
           />
 
@@ -96,7 +100,7 @@ const MarketCapTrendChart = () => {
             fill="url(#gradient-fill)"
             stroke="url(#lineGradient)"
             strokeWidth={3}
-            filter="url(#glow)" // neon glow on the line
+            filter="url(#glow)"
             dot={false}
           />
         </AreaChart>

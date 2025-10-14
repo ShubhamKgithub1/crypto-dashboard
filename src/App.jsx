@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 
 function App() {
   const themeMode = useSelector((state)=>state.theme.mode);
-  console.log(themeMode);
   useEffect(()=>{
     if (themeMode === "dark") {
       document.documentElement.classList.add("dark");
@@ -22,9 +21,9 @@ function App() {
 
   return (
     <Router>
-      <div className="flex h-[100dvh]">
+      <div className="flex h-[100dvh] text-slate-800 dark:text-text-dark">
       <Sidebar/>
-      <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-slate-200 dark:bg-black transition-all duration-200">
+      <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-[#F3F4F6] dark:bg-[#0D1117] transition-all duration-200">
         <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/analytics" element={<Analytics/>} />

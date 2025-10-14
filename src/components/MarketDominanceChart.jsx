@@ -8,9 +8,13 @@ import {
   Tooltip,
 } from "recharts";
 import { selectDominanceHistory } from "../features/historySlice";
+import { getChartColors } from "../utils/chartColors";
 
 const MarketDominanceChart = () => {
   const dominanceData = useSelector(selectDominanceHistory);
+  const theme = useSelector((state) => state.theme.mode);
+  const isDark = theme === "dark";
+  const chartColors = getChartColors(isDark);
   if (!dominanceData) {
     return null;
   }
@@ -45,10 +49,15 @@ const MarketDominanceChart = () => {
                 day: "numeric",
               })
             }
+            tick={{fill: chartColors.text}}
           />
           <YAxis
-           tick={{ textAnchor: "start", dx: -40 }}
-          tickFormatter={(val) => `${val}%`} tickLine={false} axisLine={false} padding={{bottom:20, top:0, left:0, right:0}}/>
+            tick={{ fill: chartColors.text, textAnchor: "start", dx: -40 }}
+            tickFormatter={(val) => `${val}%`}
+            tickLine={false}
+            axisLine={false}
+            padding={{ bottom: 20, top: 0, left: 0, right: 0 }}
+          />
           <Area
             type="monotone"
             dataKey="bitcoin"

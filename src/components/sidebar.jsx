@@ -17,7 +17,7 @@ const Sidebar = () => {
     <div
       className={`${
         isCollapsed ? "w-16" : "w-40"
-      } flex flex-col items-center h-screen bg-gradient-to-b from-slate-600 via-slate-800 to-slate-800 text-white overflow-hidden transition-all duration-200`}
+      } flex flex-col items-center h-screen bg-slate-800 dark:bg-card-dark text-white overflow-hidden transition-all duration-200`}
     >
       <button onClick={() => setIsCollapsed(!isCollapsed)} className="m-4">
         {isCollapsed ? <ArrowRight size={26} /> : <ArrowLeft size={26} />}

@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-bg-light: #f9fafb;
+  --color-bg-dark: #161B22; /* base dark */
+  --color-text: #E2E8F0;
+}

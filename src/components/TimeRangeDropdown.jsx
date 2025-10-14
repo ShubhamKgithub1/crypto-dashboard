@@ -22,9 +22,9 @@ const TimeRangeDropdown = () => {
     <div className="relative inline-block text-left">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-between w-28 bg-white text-gray-700 rounded-lg transition"
+        className="flex items-center justify-between w-28 bg-white dark:bg-card-dark text-gray-700 dark:text-gray-200 rounded-lg transition"
       >
-        <CalendarDays size={24} className="text-purple-600 bg-purple-300 p-1 rounded"/>
+        <CalendarDays size={24} className="text-purple-800 bg-purple-300 p-1 rounded"/>
         <span className="text-sm font-medium">
           {ranges.find((r) => r.value === timeRange)?.label}
         </span>

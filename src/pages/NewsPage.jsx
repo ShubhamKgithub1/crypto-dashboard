@@ -39,7 +39,7 @@ const NewsPage = () => {
                 .fill(0)
                 .map((_, i) => <CardSkeleton key={i} />)}
         </div>
-        <NewsSidebar />
+        {articles && <NewsSidebar />}
       </div>
     </div>
   );

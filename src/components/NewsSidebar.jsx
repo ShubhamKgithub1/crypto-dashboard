@@ -16,8 +16,8 @@ const NewsSidebar = () => {
   ];
 
   return (
-    <div className="h-fit w-full flex flex-col gap-4 bg-white shadow-md rounded-lg p-4 animate-fadeIn">
-      <h2 className="text-lg font-semibold text-gray-700">Categories</h2>
+    <div className="h-fit w-full flex flex-col gap-4 bg-white dark:bg-card-dark shadow-md rounded-lg p-4 animate-fadeIn">
+      <h2 className="text-lg font-semibold text-gray-700 dark:text-text-dark">Categories</h2>
       <div className="flex flex-wrap gap-4">
         {categories.map((cat) => (
           <button

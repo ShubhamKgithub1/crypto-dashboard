@@ -54,7 +54,7 @@ const Dashboard = () => {
         ))}
       </div>
       <div className="grid grid-cols-4 gap-6 min-h-[300px]">
-        <div className="col-span-2 bg-white rounded-xl shadow-md transition hover:shadow-lg animate-fadeIn">
+        <div className="col-span-2 bg-white dark:bg-card-dark rounded-xl shadow-md transition hover:shadow-lg animate-fadeIn">
           <TopCoinsChart
             data={topCoinsOverall}
             dataKey="market_cap"
@@ -63,7 +63,7 @@ const Dashboard = () => {
             formatter={(value) => `$${(value / 1e9).toFixed(1)}B`}
           />
         </div>
-        <div className="  bg-white rounded-xl shadow-md transition hover:shadow-lg animate-fadeIn">
+        <div className="  bg-white dark:bg-card-dark rounded-xl shadow-md transition hover:shadow-lg animate-fadeIn">
           {
             <div className="flex flex-col h-full p-4">
               <h2 className="text-xl font-semibold mb-4">
@@ -77,7 +77,7 @@ const Dashboard = () => {
           <TopMovers status={marketStatus} />
         </div>
       </div>
-      <div className="flex-1 min-h-0  bg-white rounded-xl shadow-md transition hover:shadow-lg flex animate-fadeIn">
+      <div className="flex-1 min-h-0  bg-white dark:bg-card-dark rounded-xl shadow-md transition hover:shadow-lg flex animate-fadeIn">
         <div className="flex flex-col flex-1">
           <div className="flex-1 min-h-0">
             <BtcPriceChart />
