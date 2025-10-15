@@ -15,22 +15,22 @@ const Navbar = ({ title, subHeader, showLiveStatus }) => {
 
     updateTime();
 
-    const interval = setInterval(updateTime, 60000); // update every 1 min
+    const interval = setInterval(updateTime, 60000);
 
-    return () => clearInterval(interval); // cleanup when unmounted
+    return () => clearInterval(interval);
   }, [lastUpdated]);
 
   return (
     <div className="flex justify-between items-center animate-fadeIn">
       <div>
-        <h1 className="text-2xl font-bold">{title}</h1>
-        <p className="text-gray-600 font-semibold dark:text-gray-300">{subHeader}</p>
+        <h1 className="text-lg lg:text-2xl font-bold">{title}</h1>
+        <p className="text-gray-600 text-xs md:text-sm lg:text-base font-semibold dark:text-gray-300">{subHeader}</p>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-1 lg:gap-4">
         {showLiveStatus && (
           <div className="">
-            <span className="text-gray-400 font-semibold">Last Updated: </span>
-            <span className="text-green-600 font-semibold">{relativeTime}</span>
+            <span className="text-gray-400 text-xs md:text-sm lg:text-base font-semibold">Last Updated: </span>
+            <span className="text-green-600 text-xs md:text-sm lg:text-base font-semibold">{relativeTime}</span>
           </div>
         )}
         <ThemeSwitcher />

@@ -8,8 +8,8 @@ const NewsCard = ({ article }) => {
   const { title, description, pubDate, image_url, source_url, source_id } = article;
   return (
     <div className="flex w-full gap-0 bg-white dark:bg-card-dark rounded-md shadow-sm hover:shadow-lg transition-all cursor-pointer animate-fadeIn" onClick={()=>dispatch(openNewsModal(article))}>
-      <div className="flex flex-1 aspect-video rounded-l-md overflow-hidden">
-        {image_url ? <img src={image_url} className="aspect-video animate-fadeIn" />: <div className="w-full h-full bg-gray-300 dark:bg-slate-800 flex items-center justify-center text-gray-500 dark:text-gray-300 font-semibold text-sm">
+      <div className="flex flex-1 aspect-video rounded-l-md overflow-hidden bg-gray-300 dark:bg-slate-800">
+        {image_url ? <img src={image_url} className="aspect-video animate-fadeIn" />: <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-300 font-semibold text-sm">
             No Image
           </div>}
       </div>

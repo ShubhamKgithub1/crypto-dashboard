@@ -19,7 +19,7 @@ const MarketDominanceChart = () => {
     return null;
   }
   return (
-    <div className="flex-1 w-full">
+    <div className="lg:flex-1 h-[300px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={dominanceData}
@@ -91,10 +91,10 @@ const MarketDominanceChart = () => {
             }}
             cursor={{ stroke: "transparent" }}
             contentStyle={{
-              backgroundColor: "#fff",
+             backgroundColor: chartColors.bg,
               borderRadius: "8px",
               border: "none",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
             }}
           />
         </AreaChart>

@@ -11,11 +11,11 @@ const SparklineCard = ({ title, history, color }) => {
   const latestPrice = data.length > 0 ? data[data.length - 1].price : null;
 
   return (
-    <div className="flex-1 flex justify-between items-center p-3 rounded-2xl shadow-md bg-white dark:bg-card-dark hover:shadow-lg transition animate-fadeIn">
+    <div className="flex-1 flex justify-between items-center p-3 rounded-lg lg:rounded-2xl shadow-md bg-white dark:bg-card-dark hover:shadow-lg transition animate-fadeIn">
       <div className="flex flex-col">
-        <h1 className="text-sm font-medium text-gray-600">{title}</h1>
+        <h1 className="text-xs lg:text-sm font-semibold text-gray-500 dark:text-gray-400">{title}</h1>
         {latestPrice && (
-          <p className="text-lg font-bold text-gray-900">
+          <p className="text-base lg:text-lg font-bold">
             ${formatNumber(latestPrice)}
           </p>
         )}

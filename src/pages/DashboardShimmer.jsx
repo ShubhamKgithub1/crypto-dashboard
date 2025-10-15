@@ -1,11 +1,11 @@
 import CardSkeleton from "../components/CardSkeleton";
 import ChartSkeleton from "../components/ChartSkeleton";
 
-const DashboardShimmer = ({ title }) => {
+const DashboardShimmer = () => {
   return (
     <div className="flex-1 flex flex-col w-full min-h-0 p-4 gap-6">
       <div className="rounded-lg">
-        <h1 className="text-2xl font-bold">{title}</h1>
+        <h1 className="text-2xl font-bold">Crypto Dashboard</h1>
       </div>
       <div className="h-[10dvh] grid grid-cols-4 gap-6">
         {Array(4)

@@ -1,32 +1,35 @@
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../features/modalSlice";
 
 const StatCard = ({ name, price, change, changeType, data }) => {
+  const theme = useSelector((state)=>state.theme.mode);
+  const isDarkMode = theme === "dark";
   const dispatch = useDispatch();
+  const textColor = isDarkMode ?"#e2e8f0":"#333";
   const percent = change ? parseFloat(change) : null;
   const isPositive = changeType === "positive";
-  const Icon = isPositive ? ArrowUpRight : ArrowDownRight;
+  const Icon = isPositive ? ArrowUpRight : ArrowDownRight;4
 
   return (
     <div
       onClick={() => dispatch(openModal(data))}
-      className="bg-white dark:bg-card-dark p-4 rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
+      className="bg-white dark:bg-card-dark p-2 md:p-4 rounded-lg lg:rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
     >
       <div>
-        <h2 className="text-gray-500 dark:text-gray-400 text-sm">{name}</h2>
-        <p className="text-xl font-bold">{price}</p>
+        <h2 className="text-gray-500 dark:text-gray-400 text-xs lg:text-sm font-semibold">{name}</h2>
+        <p className="text-base lg:text-xl font-bold">{price}</p>
         {change && changeType && (
           <div className="flex items-center gap-1">
             <Icon
-              className={`w-4 h-4 ${
+              className={`w-3 h-3 lg:w-4 lg:h-4 ${
                 isPositive ? "text-green-500" : "text-red-500"
               }`}
             />
             <span
-              className={`text-sm ${
+              className={`text-xs md:text-sm ${
                 isPositive ? "text-green-500" : "text-red-500"
               }`}
             >
@@ -36,13 +39,13 @@ const StatCard = ({ name, price, change, changeType, data }) => {
         )}
       </div>
       {change && (
-        <div className="w-14 h-14">
+        <div className="w-10 h-10 lg:w-14 lg:h-14">
           <CircularProgressbar
             value={Math.abs(percent)}
             text={`${percent}%`}
             styles={buildStyles({
               textSize: "24px",
-              textColor: "#333",
+              textColor: textColor,
               pathColor: isPositive ? "#22c55e" : "#ef4444",
               trailColor: "#e5e7eb",
             })}

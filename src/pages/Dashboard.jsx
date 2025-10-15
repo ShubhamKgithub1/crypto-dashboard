@@ -34,12 +34,12 @@ const Dashboard = () => {
     }
   });
   if (!coins.length > 0 || historyStatus === "loading") {
-    return <DashboardShimmer title={"Crypto Dashboard"} />;
+    return <DashboardShimmer/>;
   }
   return (
-    <div className="flex flex-col flex-1 min-h-0 p-4 gap-6">
+    <div className="flex flex-col flex-1 p-2 md:p-4 gap-3 lg:gap-6">
       <Navbar title={"Crypto Dashboard"} showLiveStatus={true} />
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-6">
         {coins?.slice(0, 4)?.map((coin) => (
           <StatCard
             key={coin.id}
@@ -53,8 +53,8 @@ const Dashboard = () => {
           />
         ))}
       </div>
-      <div className="grid grid-cols-4 gap-6 min-h-[300px]">
-        <div className="col-span-2 bg-white dark:bg-card-dark rounded-xl shadow-md transition hover:shadow-lg animate-fadeIn">
+      <div className="grid lg:grid-cols-4 gap-3 lg:gap-6 lg:min-h-[300px]">
+        <div className="lg:col-span-2 bg-white dark:bg-card-dark rounded-xl shadow-md transition hover:shadow-lg animate-fadeIn">
           <TopCoinsChart
             data={topCoinsOverall}
             dataKey="market_cap"
@@ -63,26 +63,22 @@ const Dashboard = () => {
             formatter={(value) => `$${(value / 1e9).toFixed(1)}B`}
           />
         </div>
-        <div className="  bg-white dark:bg-card-dark rounded-xl shadow-md transition hover:shadow-lg animate-fadeIn">
+        <div className="bg-white dark:bg-card-dark rounded-xl shadow-md transition hover:shadow-lg animate-fadeIn">
           {
-            <div className="flex flex-col h-full p-4">
-              <h2 className="text-xl font-semibold mb-4">
+            <div className="flex flex-col h-full gap-2 lg:gap-4 p-3 lg:p-4">
+              <h2 className="lg:text-lg font-semibold lg:font-bold">
                 Top Coins by Volume
               </h2>
               <VolumePieChart data={topCoinsOverall} />
             </div>
           }
         </div>
-        <div className="">
+        <div>
           <TopMovers status={marketStatus} />
         </div>
       </div>
-      <div className="flex-1 min-h-0  bg-white dark:bg-card-dark rounded-xl shadow-md transition hover:shadow-lg flex animate-fadeIn">
-        <div className="flex flex-col flex-1">
-          <div className="flex-1 min-h-0">
-            <BtcPriceChart />
-          </div>
-        </div>
+      <div className="lg:flex-1 lg:min-h-0 bg-white dark:bg-card-dark rounded-xl shadow-md transition hover:shadow-lg flex flex-col animate-fadeIn">
+          <BtcPriceChart/>
       </div>
     </div>
   );

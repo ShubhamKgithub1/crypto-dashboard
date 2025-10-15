@@ -20,8 +20,8 @@ const TopCoinsChart = ({
   const isDark = theme === "dark";
   const chartColors = getChartColors(isDark);
   return (
-    <div className="w-full h-full flex flex-col gap-4 p-4">
-      <h2 className="text-xl font-semibold">{header}</h2>
+    <div className="w-full flex flex-col gap-2 lg:gap-4 p-3 lg:p-4 h-[300px] lg:h-full">
+      <h2 className="lg:text-lg font-semibold lg:font-bold">{header}</h2>
       <ResponsiveContainer
         width="100%"
         height="100%"

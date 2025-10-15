@@ -15,7 +15,7 @@ function VolumePieChart({ data }) {
   const isDark = theme === "dark";
   const chartColors = getChartColors(isDark);
   return (
-    <div className="flex-1">
+    <div className="lg:flex-1 h-[300px] lg:h-full">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
@@ -35,7 +35,7 @@ function VolumePieChart({ data }) {
             {topCoins.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={["#facc15", "#3b82f6", "#f97316", "#111"][index]}
+                fill={["#facc15", "#3b82f6", "#f97316", "#26A17B"][index]}
               />
             ))}
           </Pie>
@@ -51,10 +51,10 @@ function VolumePieChart({ data }) {
               boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
             }}
             labelStyle={{
-              color: chartColors.text, // fixes label text color
+              color: chartColors.text,
             }}
             itemStyle={{
-              color: chartColors.text, // fixes value text color
+              color: chartColors.text,
             }}
           />
           <Legend

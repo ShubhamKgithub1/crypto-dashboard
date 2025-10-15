@@ -26,20 +26,22 @@ const NewsModal = () => {
       <div className="flex flex-col bg-white dark:bg-card-dark w-[90%] max-w-2xl rounded-xl overflow-auto hide-scrollbar shadow-lg relative animate-fadeIn">
         <button
           onClick={() => dispatch(closeNewsModal())}
-          className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
+          className="absolute top-3 right-3 hover:text-white text-gray-300"
         >
           <X size={20} />
         </button>
 
-        <div className="min-h-[30dvh] h-[35dvh] overflow-hidden w-full">
+        <div className="flex min-h-[30dvh] h-[35dvh] overflow-hidden w-full bg-slate-200 dark:bg-slate-800">
           {image_url ? (
-          <img
-            src={image_url}
-            className="w-full object-center max-h-[40dvh]"
-          />
-        ):(<div className="w-full h-full flex items-center justify-center bg-slate-200 dark:bg-slate-800 text-gray-500 dark:text-gray-300 font-semibold text-sm">
-            No Image
-          </div>)}
+            <img
+              src={image_url}
+              className="w-full object-center max-h-[40dvh]"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-300 font-semibold text-sm">
+              No Image
+            </div>
+          )}
         </div>
 
         <div className="flex-1 flex flex-col p-4 space-y-3">
@@ -48,11 +50,17 @@ const NewsModal = () => {
             <span>{formatDateTime(pubDate)}</span>
           </div>
 
-          <h1 className="text-xl font-semibold text-gray-800 dark:text-text-dark">{title}</h1>
+          <h1 className="text-xl font-semibold text-gray-800 dark:text-text-dark">
+            {title}
+          </h1>
 
-          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-            {description.length>300? description.slice(0,300)+"...":description || "No description available."}
-          </p>
+          {description && (
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              {description.length > 300
+                ? description.slice(0, 300) + "..."
+                : description || "No description available."}
+            </p>
+          )}
 
           {source_url && (
             <a

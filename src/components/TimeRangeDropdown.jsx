@@ -22,10 +22,10 @@ const TimeRangeDropdown = () => {
     <div className="relative inline-block text-left">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-between w-28 bg-white dark:bg-card-dark text-gray-700 dark:text-gray-200 rounded-lg transition"
+        className="flex items-center justify-between w-24 lg:w-28 bg-white dark:bg-card-dark text-gray-700 dark:text-gray-200 rounded-lg transition"
       >
         <CalendarDays size={24} className="text-purple-800 bg-purple-300 p-1 rounded"/>
-        <span className="text-sm font-medium">
+        <span className="text-xs lg:text-sm font-medium">
           {ranges.find((r) => r.value === timeRange)?.label}
         </span>
         <ChevronDown
@@ -37,12 +37,12 @@ const TimeRangeDropdown = () => {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-1 w-28 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg z-10">
+        <div className="absolute right-0 mt-1 w-24 lg:w-28 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg z-10">
           {ranges.map((range) => (
             <div
               key={range.value}
               onClick={() => handleSelect(range.value)}
-              className={`px-3 py-1.5 text-sm cursor-pointer ${
+              className={`px-2 lg:px-3 py-1.5 text-xs lg:text-sm cursor-pointer ${
                 timeRange === range.value
                   ? "bg-purple-100 text-purple-500"
                   : "text-gray-700 hover:bg-gray-100"

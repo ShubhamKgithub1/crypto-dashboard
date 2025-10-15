@@ -31,10 +31,10 @@ function BtcPriceChart() {
   const isDark = theme === "dark";
   const chartColors = getChartColors(isDark);
   return (
-    <div className="flex flex-col h-full p-4 gap-4">
+    <div className="flex flex-col h-[300px] lg:h-full p-3 lg:p-4 gap-4">
       <div className="flex justify-between">
-        <h2 className="text-xl font-semibold">Bitcoin Price ({range})</h2>
-        <TimeRangeDropdown />
+        <h2 className="lg:text-lg font-semibold lg:font-bold">Bitcoin Price ({range})</h2>
+        <TimeRangeDropdown/>
       </div>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart

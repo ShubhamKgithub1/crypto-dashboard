@@ -23,7 +23,7 @@ function App() {
     <Router>
       <div className="flex h-[100dvh] text-slate-800 dark:text-text-dark">
       <Sidebar/>
-      <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-[#F3F4F6] dark:bg-[#0D1117] transition-all duration-200">
+      <main className="flex-1 flex flex-col h-[100dvh] min-w-0 overflow-auto overflow-x-hidden lg:overflow-hidden bg-[#F3F4F6] dark:bg-[#0D1117] transition-all duration-200 hide-scrollbar">
         <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/analytics" element={<Analytics/>} />
