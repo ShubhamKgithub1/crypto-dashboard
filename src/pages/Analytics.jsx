@@ -65,7 +65,7 @@ if (
 }
 
   return (
-    <div className="flex-1 flex flex-col p-3 md:p-4 gap-3 lg:gap-6">
+    <div className="flex-1 flex flex-col p-3 md:p-4 gap-3 xl:gap-6">
       <header>
         <Navbar
           title="Analytics"
@@ -73,7 +73,7 @@ if (
           showLiveStatus={true}
         />
       </header>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 lg:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 xl:gap-6">
         {kpiCards.map((card, id) => (
           <StatCard
             key={id}
@@ -84,7 +84,7 @@ if (
           />
         ))}
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-6 lg:flex-1 lg:min-h-0">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 xl:gap-6 lg:flex-1 lg:min-h-0">
         <div className="bg-white dark:bg-card-dark rounded-xl shadow-md hover:shadow-lg transition flex animate-fadeIn">
           <TopCoinsChart
             data={topCoins24h}
@@ -98,13 +98,13 @@ if (
           <MarketCapTrendChart />
         </div>
       </div>
-      <div className="flex-1 min-h-[100px] flex flex-col-reverse lg:grid lg:grid-cols-4 gap-3 lg:gap-6">
+      <div className="flex-1 min-h-[100px] flex flex-col-reverse lg:grid lg:grid-cols-4 gap-3 xl:gap-6">
         <div className="bg-white dark:bg-card-dark p-3 lg:p-4 rounded-xl shadow-md hover:shadow-lg transition flex flex-col gap-2 lg:gap-4 lg:col-span-3 animate-fadeIn">
           <h2 className="lg:text-lg font-semibold lg:font-bold">Market Dominance</h2>
           <MarketDominanceChart/>
         </div>
         {coinsHistory != null && (
-          <div className="flex-1 grid grid-cols-2 lg:grid-cols-1 w-full gap-3 lg:gap-6">
+          <div className="flex-1 grid grid-cols-2 lg:grid-cols-1 w-full gap-3 xl:gap-6">
             <SparklineCard
               title="Bitcoin"
               history={coinsHistory.bitcoin}

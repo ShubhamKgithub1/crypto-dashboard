@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import CardSkeleton from "./CardSkeleton";
+import HorizontalCardSkeleton from "./HorizontalCardSkeleton";
 import {
   selectTopGainers,
   selectTopLosers,
@@ -12,7 +12,7 @@ const TopMovers = ({ status }) => {
   return (
     <div className="flex-1 flex flex-col justify-between h-full w-full gap-3 lg:gap-6">
       {status === "loading" || status === "idle" ? (
-        <CardSkeleton className={"h-[45%]"} />
+        <HorizontalCardSkeleton className={"h-[45%]"} />
       ) : (
         <div className="flex-1 bg-white dark:bg-card-dark p-3 lg:p-4 rounded-xl shadow-md hover:shadow-lg transition animate-fadeIn">
           <h1 className="font-semibold lg:font-bold lg:text-lg mb-2">Top Gainers</h1>
@@ -31,7 +31,7 @@ const TopMovers = ({ status }) => {
         </div>
       )}
       {status === "loading" || status === "idle" ? (
-        <CardSkeleton className={"h-[45%]"} />
+        <HorizontalCardSkeleton className={"h-[45%]"} />
       ) : (
         <div className="flex-1 bg-white dark:bg-card-dark p-3 lg:p-4 rounded-xl shadow-md hover:shadow-lg transition animate-fadeIn">
           <h1 className="font-semibold lg:font-bold lg:text-lg mb-2">Top Losers</h1>

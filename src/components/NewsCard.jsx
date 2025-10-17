@@ -7,27 +7,27 @@ const NewsCard = ({ article }) => {
   const dispatch = useDispatch();
   const { title, description, pubDate, image_url, source_url, source_id } = article;
   return (
-    <div className="flex w-full gap-0 bg-white dark:bg-card-dark rounded-md shadow-sm hover:shadow-lg transition-all cursor-pointer animate-fadeIn" onClick={()=>dispatch(openNewsModal(article))}>
-      <div className="flex flex-1 aspect-video rounded-l-md overflow-hidden bg-gray-300 dark:bg-slate-800">
+    <div className="flex flex-col gap-0 h-fit bg-white dark:bg-card-dark rounded-md shadow-sm hover:shadow-lg transition-all cursor-pointer animate-fadeIn" onClick={()=>dispatch(openNewsModal(article))}>
+      <div className="flex aspect-video min-h-[60%] max-h-[60%] rounded-t-md overflow-hidden bg-gray-300 dark:bg-slate-800">
         {image_url ? <img src={image_url} className="aspect-video animate-fadeIn" />: <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-300 font-semibold text-sm">
             No Image
           </div>}
       </div>
-      <div className="flex flex-col gap-1 w-[75%] px-4 py-3">
+      <div className="flex flex-1 min-h-0 flex-col gap-1 p-3 lg:p-4">
         <div className="flex items-center gap-1 text-gray-500 dark:text-gray-300">
           <span>
-            <Calendar size={12} className="" />
+            <Calendar size={12}/>
           </span>
           <span className="text-xs font-semibold">
             {formatDateTime(pubDate)}
           </span>
         </div>
-        <h1 className="text-xl text-gray-700 dark:text-text-dark font-semibold">{title}</h1>
-          {description && <p className={`text-sm text-gray-500 dark:text-gray-400 font-semibold`}>
-            {description.length > 400 ? description.slice(0, 400) + "...":description}
+        <h1 className="lg:text-xl text-gray-700 dark:text-text-dark font-semibold">{title}</h1>
+          {description && <p className={`text-xs lg:text-sm text-gray-500 dark:text-gray-400 font-medium leading-relaxed`}>
+            {description.length > 150 ? description.slice(0, 150) + "...":description}
           </p>}
-        <div className="mt-1">
-          <span className="text-sm text-gray-600 dark:text-text-dark font-semibold">Source : </span>
+        <div>
+          <span className="text-xs lg:text-sm text-gray-600 dark:text-text-dark font-semibold">Source : </span>
           {source_url ? (
             <a
               href={source_url}

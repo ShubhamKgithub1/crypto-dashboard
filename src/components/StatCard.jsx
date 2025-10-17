@@ -16,11 +16,11 @@ const StatCard = ({ name, price, change, changeType, data }) => {
   return (
     <div
       onClick={() => dispatch(openModal(data))}
-      className="bg-white dark:bg-card-dark p-2 md:p-4 rounded-lg lg:rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
+      className="bg-white dark:bg-card-dark p-3 md:px-4 rounded-lg lg:rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
     >
       <div>
         <h2 className="text-gray-500 dark:text-gray-400 text-xs lg:text-sm font-semibold">{name}</h2>
-        <p className="text-base lg:text-xl font-bold">{price}</p>
+        <p className="text-base lg:text-xl font-semibold lg:font-bold">{price}</p>
         {change && changeType && (
           <div className="flex items-center gap-1">
             <Icon

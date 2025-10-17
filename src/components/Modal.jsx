@@ -35,7 +35,7 @@ const Modal = () => {
         onClick={() => dispatch(closeModal())}
         className="absolute inset-0"
       ></div>
-      <div className="z-[99] bg-white dark:bg-card-dark p-6 rounded-2xl max-w-md w-full shadow-lg relative animate-fadeIn">
+      <div className="z-[99] bg-white dark:bg-card-dark p-4 lg:p-6 rounded-lg lg:rounded-xl max-w-md w-full shadow-lg relative animate-fadeIn">
         <button
           onClick={() => dispatch(closeModal())}
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
@@ -46,7 +46,7 @@ const Modal = () => {
         <div className="flex items-center gap-3 mb-4">
           <img src={image} alt={name} className="w-10 h-10" />
           <div>
-            <h2 className="text-xl font-semibold">
+            <h2 className="text-lg lg:text-xl font-semibold">
               {name}{" "}
               <span className="text-gray-500 uppercase text-sm">
                 ({symbol})
@@ -55,8 +55,8 @@ const Modal = () => {
           </div>
         </div>
 
-        <div className="space-y-2">
-          <p className="text-lg font-medium">
+        <div className="space-y-1 lg:space-y-2">
+          <p className="lg:text-lg font-medium">
             Price:{" "}
             <span className="font-semibold">
               ${current_price?.toLocaleString()}

@@ -23,7 +23,7 @@ const NewsModal = () => {
       onClick={handleBackdropClick}
       className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
     >
-      <div className="flex flex-col bg-white dark:bg-card-dark w-[90%] max-w-2xl rounded-xl overflow-auto hide-scrollbar shadow-lg relative animate-fadeIn">
+      <div className="flex flex-col bg-white dark:bg-card-dark w-[90%] max-w-2xl rounded-lg lg:rounded-xl overflow-auto hide-scrollbar shadow-lg relative animate-fadeIn">
         <button
           onClick={() => dispatch(closeNewsModal())}
           className="absolute top-3 right-3 hover:text-white text-gray-300"
@@ -44,18 +44,16 @@ const NewsModal = () => {
           )}
         </div>
 
-        <div className="flex-1 flex flex-col p-4 space-y-3">
+        <div className="flex-1 flex flex-col p-3 space-y-1 lg:space-y-2">
           <div className="flex items-center gap-2 text-gray-500 dark:text-gray-200 text-sm">
             <Calendar size={14} />
-            <span>{formatDateTime(pubDate)}</span>
+            <span className="text-xs lg:text-sm font-semibold">{formatDateTime(pubDate)}</span>
           </div>
-
-          <h1 className="text-xl font-semibold text-gray-800 dark:text-text-dark">
+          <h1 className="lg:text-xl font-semibold text-gray-800 dark:text-text-dark">
             {title}
           </h1>
-
           {description && (
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            <p className="text-gray-500 dark:text-gray-400 text-xs lg:text-sm leading-relaxed font-medium">
               {description.length > 300
                 ? description.slice(0, 300) + "..."
                 : description || "No description available."}
@@ -67,7 +65,7 @@ const NewsModal = () => {
               href={source_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-3 text-blue-600 hover:text-blue-800 dark:text-blue-400 font-semibold text-sm"
+              className="inline-block mt-3 text-blue-600 hover:text-blue-800 dark:text-blue-400 font-semibold text-xs lg:text-sm"
             >
               🔗 Read Full Article on{" "}
               {source_id || new URL(source_url).hostname.replace("www.", "")}

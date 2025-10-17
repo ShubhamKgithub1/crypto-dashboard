@@ -37,9 +37,9 @@ const Dashboard = () => {
     return <DashboardShimmer/>;
   }
   return (
-    <div className="flex flex-col flex-1 p-2 md:p-4 gap-3 lg:gap-6">
+    <div className="flex flex-col flex-1 p-2 md:p-4 gap-3 xl:gap-6">
       <Navbar title={"Crypto Dashboard"} showLiveStatus={true} />
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 xl:gap-6">
         {coins?.slice(0, 4)?.map((coin) => (
           <StatCard
             key={coin.id}
@@ -53,7 +53,7 @@ const Dashboard = () => {
           />
         ))}
       </div>
-      <div className="grid lg:grid-cols-4 gap-3 lg:gap-6 lg:min-h-[300px]">
+      <div className="grid lg:grid-cols-4 gap-3 xl:gap-6 lg:min-h-[300px]">
         <div className="lg:col-span-2 bg-white dark:bg-card-dark rounded-xl shadow-md transition hover:shadow-lg animate-fadeIn">
           <TopCoinsChart
             data={topCoinsOverall}
