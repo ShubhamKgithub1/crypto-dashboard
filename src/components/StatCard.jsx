@@ -11,12 +11,12 @@ const StatCard = ({ name, price, change, changeType, data }) => {
   const textColor = isDarkMode ?"#e2e8f0":"#333";
   const percent = change ? parseFloat(change) : null;
   const isPositive = changeType === "positive";
-  const Icon = isPositive ? ArrowUpRight : ArrowDownRight;4
+  const Icon = isPositive ? ArrowUpRight : ArrowDownRight;
 
   return (
     <div
       onClick={() => dispatch(openModal(data))}
-      className="bg-white dark:bg-card-dark p-3 md:px-4 rounded-lg lg:rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
+      className="bg-white dark:bg-card-dark p-3 py-2 md:py-4 md:px-4 rounded-lg lg:rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
     >
       <div>
         <h2 className="text-gray-500 dark:text-gray-400 text-xs lg:text-sm font-semibold">{name}</h2>

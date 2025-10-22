@@ -29,8 +29,8 @@ const NewsPage = () => {
           showLiveStatus={false}
         />
       </header>
-      <div className="flex-1 grid grid-cols-4 gap-3 lg:gap-4 overflow-auto">
-        <div className="col-span-3 flex-1 grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4 overflow-y-auto hide-scrollbar">
+      <div className="flex-1 flex flex-col-reverse lg:grid lg:grid-cols-4 gap-3 lg:gap-4 overflow-auto">
+        <div className="lg:col-span-3 flex-1 grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4 overflow-y-auto hide-scrollbar">
           {articles
             ? articles.map((article) => (
                 <NewsCard key={article.article_id} article={article} />

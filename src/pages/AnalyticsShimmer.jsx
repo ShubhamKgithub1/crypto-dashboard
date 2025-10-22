@@ -19,7 +19,7 @@ const AnalyticsShimmer = ({ title }) => {
         <ChartSkeleton className={"h-[300px] lg:h-full"}/>
       </div>
       <div className="lg:flex-1 lg:min-h-0 flex flex-col-reverse lg:grid lg:grid-cols-4 gap-3 xl:gap-6">
-        <div className="h-[300px] lg:h-full lg:col-span-3 bg-gray-400 rounded-lg"></div>
+        <div className="h-[300px] lg:h-full lg:col-span-3 bg-gray-300 rounded-lg"></div>
         <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-4">
           <ChartSkeleton className={"h-[70px] lg:h-full"}/>
           <ChartSkeleton className={"h-[70px] lg:h-full"}/>
