@@ -21,9 +21,9 @@ function App() {
 
   return (
     <Router>
-      <div className="flex h-[100dvh] text-slate-700 dark:text-text-dark">
+      <div className="flex h-[100dvh] bg-gradient-to-br from-indigo-50 via-indigo-100 to-purple-100 text-slate-700 dark:text-text-dark">
       <Sidebar/>
-      <main className="flex-1 flex flex-col h-[100dvh] min-w-0 overflow-auto overflow-x-hidden lg:overflow-hidden bg-[#F3F4F6] dark:bg-[#0D1117] transition-all duration-200 hide-scrollbar">
+      <main className="flex-1 flex flex-col h-[100dvh] min-w-0 overflow-auto overflow-x-hidden lg:overflow-hidden  dark:bg-[#0D1117] transition-all duration-200 hide-scrollbar">
         <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/analytics" element={<Analytics/>} />
