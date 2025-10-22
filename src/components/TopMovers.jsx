@@ -10,11 +10,11 @@ const TopMovers = ({ status }) => {
   const losers = useSelector(selectTopLosers);
 
   return (
-    <div className="flex-1 flex flex-col justify-between h-full w-full gap-3 lg:gap-6">
+    <div className="flex-1 flex flex-col justify-between h-full w-full gap-3">
       {status === "loading" || status === "idle" ? (
         <HorizontalCardSkeleton className={"h-[45%]"} />
       ) : (
-        <div className="flex-1 bg-white dark:bg-card-dark p-3 lg:p-4 rounded-xl shadow-md hover:shadow-lg transition animate-fadeIn">
+        <div className="flex-1 bg-white dark:bg-card-dark lg:bg-transparent lg:dark:bg-transparent lg:shadow-none p-3 lg:p-1 rounded-xl shadow-md transition animate-fadeIn">
           <h1 className="font-semibold lg:font-bold lg:text-lg mb-2">Top Gainers</h1>
           {gainers.map((coin, index) => (
             <div key={index} className="flex justify-between text-sm py-1">
@@ -33,7 +33,7 @@ const TopMovers = ({ status }) => {
       {status === "loading" || status === "idle" ? (
         <HorizontalCardSkeleton className={"h-[45%]"} />
       ) : (
-        <div className="flex-1 bg-white dark:bg-card-dark p-3 lg:p-4 rounded-xl shadow-md hover:shadow-lg transition animate-fadeIn">
+        <div className="flex-1 bg-white dark:bg-card-dark lg:bg-transparent lg:dark:bg-transparent lg:shadow-none p-3 lg:p-1 rounded-xl shadow-md transition animate-fadeIn">
           <h1 className="font-semibold lg:font-bold lg:text-lg mb-2">Top Losers</h1>
           {losers.map((coin, index) => (
             <div key={index} className="flex justify-between text-sm py-1">

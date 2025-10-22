@@ -24,13 +24,13 @@ const Navbar = ({ title, subHeader, showLiveStatus }) => {
     <div className="flex justify-between items-center animate-fadeIn">
       <div>
         <h1 className="text-lg lg:text-2xl font-bold">{title}</h1>
-        <p className="text-gray-600 text-xs md:text-sm lg:text-base font-semibold dark:text-gray-300">{subHeader}</p>
+        <p className="hidden md:block text-gray-600 text-xs md:text-sm lg:text-base font-semibold dark:text-gray-300">{subHeader}</p>
       </div>
       <div className="flex items-center gap-1 lg:gap-4">
         {showLiveStatus && (
-          <div className="">
-            <span className="text-gray-400 text-xs md:text-sm lg:text-base font-semibold">Last Updated: </span>
-            <span className="text-green-600 text-xs md:text-sm lg:text-base font-semibold">{relativeTime}</span>
+          <div className="text-xs md:text-sm lg:text-base font-semibold">
+            <span className="text-gray-400">Last Updated: </span>
+            <span className="text-green-600">{relativeTime}</span>
           </div>
         )}
         <ThemeSwitcher />

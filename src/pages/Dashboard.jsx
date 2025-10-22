@@ -65,7 +65,7 @@ const Dashboard = () => {
         </div>
         <div className="bg-white dark:bg-card-dark rounded-xl shadow-md transition hover:shadow-lg animate-fadeIn">
           {
-            <div className="flex flex-col h-full gap-2 lg:gap-4 p-3 lg:p-4">
+            <div className="flex flex-col h-full gap-2 lg:gap-4 p-3 lg:p-4 overflow-hidden">
               <h2 className="lg:text-lg font-semibold lg:font-bold">
                 Top Coins by Volume
               </h2>

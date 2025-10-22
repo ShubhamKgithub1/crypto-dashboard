@@ -1,14 +1,12 @@
 import {
   ArrowLeft,
   ArrowRight,
-  Layers,
   LayoutDashboard,
   Newspaper,
   PieChart,
-  Settings,
 } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -16,18 +14,18 @@ const Sidebar = () => {
   return (
     <div
       className={`${
-        isCollapsed ? "w-12 lg:w-16" : "w-24 lg:w-40"
+        isCollapsed ? "w-10 md:w-16" : "w-20 md:w-40"
       } flex flex-col items-center h-screen bg-slate-800 dark:bg-card-dark text-white overflow-hidden transition-all duration-200`}
     >
       <button onClick={() => setIsCollapsed(!isCollapsed)} className="m-4">
-        {isCollapsed ? <ArrowRight size={26} /> : <ArrowLeft size={26} />}
+        {isCollapsed ? <ArrowRight className="lg:size-7"/> : <ArrowLeft className="lg:size-7" />}
       </button>
-      <nav className="flex flex-col gap-6 mt-4 w-full">
-        <Link
+      <nav className="flex flex-col gap-4 lg:gap-6 mt-3 lg:mt-4 w-full">
+        <NavLink
           to="/"
-          className="flex flex-col items-center text-white hover:text-blue-500"
+          className={({isActive})=>`flex flex-col items-center hover:text-blue-500 ${isActive ? "text-blue-500" : "text-white"}`}
         >
-          <LayoutDashboard size={28} />
+          <LayoutDashboard className="md:size-7" />
           <span
             className={`text-sm mt-1 transition-all duration-200 ${
               isCollapsed ? "opacity-0 scale-0" : "opacity-100 scale-100"
@@ -35,13 +33,13 @@ const Sidebar = () => {
           >
             Dashboard
           </span>
-        </Link>
+        </NavLink>
 
-        <Link
+        <NavLink
           to="/analytics"
-          className="flex flex-col items-center text-white hover:text-blue-500"
+          className={({isActive})=>`flex flex-col items-center hover:text-blue-500 ${isActive ? "text-blue-500" : "text-white"}`}
         >
-          <PieChart size={28} />
+          <PieChart className="md:size-7"/>
           <span
             className={`text-sm mt-1 transition-all duration-200 ${
               isCollapsed ? "opacity-0 scale-0" : "opacity-100 scale-100"
@@ -49,13 +47,13 @@ const Sidebar = () => {
           >
             Analytics
           </span>
-        </Link>
+        </NavLink>
 
-        <Link
+        <NavLink
           to="/news"
-          className="flex flex-col items-center text-white hover:text-blue-500"
+          className={({isActive})=>`flex flex-col items-center hover:text-blue-500 ${isActive ? "text-blue-500" : "text-white"}`}
         >
-          <Newspaper size={28} />
+          <Newspaper className="md:size-7"/>
           <span
             className={`text-sm mt-1 transition-all duration-200 ${
               isCollapsed ? "opacity-0 scale-0" : "opacity-100 scale-100"
@@ -63,7 +61,7 @@ const Sidebar = () => {
           >
             News
           </span>
-        </Link>
+        </NavLink>
       </nav>
     </div>
   );

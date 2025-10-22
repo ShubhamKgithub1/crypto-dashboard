@@ -21,7 +21,7 @@ function App() {
 
   return (
     <Router>
-      <div className="flex h-[100dvh] text-slate-800 dark:text-text-dark">
+      <div className="flex h-[100dvh] text-slate-700 dark:text-text-dark">
       <Sidebar/>
       <main className="flex-1 flex flex-col h-[100dvh] min-w-0 overflow-auto overflow-x-hidden lg:overflow-hidden bg-[#F3F4F6] dark:bg-[#0D1117] transition-all duration-200 hide-scrollbar">
         <Routes>
