@@ -16,7 +16,7 @@ const StatCard = ({ name, price, change, changeType, data }) => {
   return (
     <div
       onClick={() => dispatch(openModal(data))}
-      className="bg-indigo-600 text-white dark:bg-indigo-700 px-2 py-2 md:py-4 md:px-4 rounded-lg lg:rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
+      className="bg-indigo-600 text-white dark:bg-slate-700 px-2 py-2 md:py-4 md:px-4 rounded-lg lg:rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
     >
       <div>
         <h2 className="text-gray-300 dark:text-gray-400 text-xs lg:text-sm font-semibold">{name}</h2>
