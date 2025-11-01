@@ -19,7 +19,7 @@ const StatCard = ({ name, price, change, changeType, data }) => {
       className="bg-slate-600 text-white dark:bg-violet-700 px-2 py-2 md:py-4 md:px-4 rounded-lg lg:rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
     >
       <div>
-        <h2 className="text-gray-300 dark:text-gray-400 text-xs lg:text-sm font-semibold">{name}</h2>
+        <h2 className="text-gray-300 text-xs lg:text-sm font-semibold">{name}</h2>
         <p className="text-base lg:text-xl font-semibold lg:font-bold">{price}</p>
         {change && changeType && (
           <div className="flex items-center gap-1">

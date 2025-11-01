@@ -35,7 +35,7 @@ const Modal = () => {
         onClick={() => dispatch(closeModal())}
         className="absolute inset-0"
       ></div>
-      <div className="z-[99] bg-slate-700 text-white dark:bg-indigo-700 p-4 lg:p-6 rounded-lg lg:rounded-xl max-w-md w-[90%] shadow-lg relative animate-fadeIn">
+      <div className="z-[99] bg-slate-700 text-white dark:bg-violet-700 p-4 lg:p-6 rounded-lg lg:rounded-xl max-w-md w-[90%] shadow-lg relative animate-fadeIn">
         <button
           onClick={() => dispatch(closeModal())}
           className="absolute top-3 right-3 text-gray-200 hover:text-gray-400 dark:hover:text-gray-300"

@@ -23,7 +23,7 @@ const Sidebar = () => {
       <nav className="flex flex-col gap-4 lg:gap-6 mt-3 lg:mt-4 w-full">
         <NavLink
           to="/"
-          className={({isActive})=>`flex flex-col items-center hover:text-indigo-600 ${isActive ? "text-indigo-600" : ""}`}
+          className={({isActive})=>`flex flex-col items-center hover:text-violet-600 ${isActive ? "text-violet-600" : ""}`}
         >
           <LayoutDashboard className="md:size-7" />
           <span
@@ -37,7 +37,7 @@ const Sidebar = () => {
 
         <NavLink
           to="/analytics"
-          className={({isActive})=>`flex flex-col items-center hover:text-indigo-600 ${isActive ? "text-indigo-600" : ""}`}
+          className={({isActive})=>`flex flex-col items-center hover:text-violet-600 ${isActive ? "text-violet-600" : ""}`}
         >
           <PieChart className="md:size-7"/>
           <span
@@ -51,7 +51,7 @@ const Sidebar = () => {
 
         <NavLink
           to="/news"
-          className={({isActive})=>`flex flex-col items-center hover:text-indigo-600 ${isActive ? "text-indigo-600" : ""}`}
+          className={({isActive})=>`flex flex-col items-center hover:text-violet-600 ${isActive ? "text-violet-600" : ""}`}
         >
           <Newspaper className="md:size-7"/>
           <span
