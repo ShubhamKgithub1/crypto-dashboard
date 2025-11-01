@@ -39,7 +39,7 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col flex-1 p-2 md:p-4 gap-3 xl:gap-6">
       <Navbar title={"Crypto Dashboard"} showLiveStatus={true} />
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 xl:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 xl:gap-6">
         {coins?.slice(0, 4)?.map((coin) => (
           <StatCard
             key={coin.id}

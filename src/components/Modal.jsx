@@ -35,10 +35,10 @@ const Modal = () => {
         onClick={() => dispatch(closeModal())}
         className="absolute inset-0"
       ></div>
-      <div className="z-[99] bg-white dark:bg-card-dark p-4 lg:p-6 rounded-lg lg:rounded-xl max-w-md w-[90%] shadow-lg relative animate-fadeIn">
+      <div className="z-[99] bg-slate-700 text-white dark:bg-indigo-700 p-4 lg:p-6 rounded-lg lg:rounded-xl max-w-md w-[90%] shadow-lg relative animate-fadeIn">
         <button
           onClick={() => dispatch(closeModal())}
-          className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+          className="absolute top-3 right-3 text-gray-200 hover:text-gray-400 dark:hover:text-gray-300"
         >
           ✕
         </button>
@@ -48,7 +48,7 @@ const Modal = () => {
           <div>
             <h2 className="text-lg lg:text-xl font-semibold">
               {name}{" "}
-              <span className="text-gray-500 uppercase text-sm">
+              <span className="text-gray-400 uppercase text-sm">
                 ({symbol})
               </span>
             </h2>
