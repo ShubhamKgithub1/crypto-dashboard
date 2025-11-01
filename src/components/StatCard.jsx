@@ -8,7 +8,7 @@ const StatCard = ({ name, price, change, changeType, data }) => {
   const theme = useSelector((state)=>state.theme.mode);
   const isDarkMode = theme === "dark";
   const dispatch = useDispatch();
-  const textColor = isDarkMode ?"#e2e8f0":"#333";
+  const textColor = isDarkMode ?"#e2e8f0":"#e2e8f0";
   const percent = change ? parseFloat(change) : null;
   const isPositive = changeType === "positive";
   const Icon = isPositive ? ArrowUpRight : ArrowDownRight;
@@ -16,10 +16,10 @@ const StatCard = ({ name, price, change, changeType, data }) => {
   return (
     <div
       onClick={() => dispatch(openModal(data))}
-      className="bg-white dark:bg-card-dark p-3 py-2 md:py-4 md:px-4 rounded-lg lg:rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
+      className="bg-indigo-600 text-white dark:bg-indigo-700 px-3 py-2 md:py-4 md:px-4 rounded-lg lg:rounded-xl shadow-md transition hover:shadow-lg flex justify-between items-center cursor-pointer animate-fadeIn"
     >
       <div>
-        <h2 className="text-gray-500 dark:text-gray-400 text-xs lg:text-sm font-semibold">{name}</h2>
+        <h2 className="text-gray-300 dark:text-gray-400 text-xs lg:text-sm font-semibold">{name}</h2>
         <p className="text-base lg:text-xl font-semibold lg:font-bold">{price}</p>
         {change && changeType && (
           <div className="flex items-center gap-1">

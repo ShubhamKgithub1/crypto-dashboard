@@ -65,7 +65,7 @@ if (
 }
 
   return (
-    <div className="flex-1 flex flex-col p-3 md:p-4 gap-3 xl:gap-6">
+    <div className="flex-1 flex flex-col p-2 md:p-4 gap-3 xl:gap-6">
       <header>
         <Navbar
           title="Analytics"
